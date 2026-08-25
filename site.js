@@ -1,12 +1,12 @@
 /* =========================================================
    THE INTERVAL — home page behaviour
 
-   FORM_ENDPOINT: paste a Formspree, Tally or Basin endpoint.
+   FORM_ENDPOINT: https://formspree.io/f/mvkpjwvr
    Free tiers handle hundreds of signups. Leave it empty and
    the form opens the visitor's mail app instead, which works
    but loses people — set it up before you launch.
 ========================================================= */
-const FORM_ENDPOINT  = "";                      // e.g. "https://formspree.io/f/xxxxxxx"
+const FORM_ENDPOINT  = "";                      https://formspree.io/f/mvkpjwvr
 const FALLBACK_EMAIL = "hello@readinterval.in";
 
 /* ---------------- the hero puzzle ---------------- */
