@@ -123,26 +123,53 @@
 
 <script>
 /* =========================================================
-   ONE SWITCH.
-   Before you've printed  ->  MODE = "preorder"
-   Once you have stock    ->  MODE = "buy"
-   PAY_URL: your Razorpay Payment Link.
+   THREE MODES. Change one word.
+
+   "preorder"  before you have stock  -> email capture
+   "upi"       you have stock         -> your UPI QR code
+   "razorpay"  once orders get busy   -> proper checkout
+
+   For "upi" you need TWO things:
+     1. Save your UPI QR as  qr.jpg  in this folder
+     2. Put your UPI ID in UPI_ID below
 ========================================================= */
-const MODE    = "preorder";
-const PAY_URL = "";      //  e.g. "https://rzp.io/l/xxxxxxx"
+const MODE     = "preorder";
+const UPI_ID   = "yourname@upi";                 // e.g. akshita@okhdfcbank
+const ORDER_FORM = "";                           // a Google Form link for the address
+const PAY_URL  = "";                             // Razorpay link, for later
 
 const box = document.getElementById("buybox");
 
-if (MODE === "buy" && PAY_URL) {
+if (MODE === "razorpay" && PAY_URL) {
   box.innerHTML =
     '<a class="btn big" href="' + PAY_URL + '">Buy issue 01</a>' +
     '<p class="note">UPI, card or netbanking. Secured by Razorpay.</p>';
-} else if (MODE === "buy") {
+
+} else if (MODE === "upi") {
   box.innerHTML =
-    '<p class="note" style="opacity:1;color:var(--red)">Paste your Razorpay link into PAY_URL at the bottom of this file.</p>';
+    '<div class="pay">' +
+      '<div class="qr">' +
+        '<img src="qr.jpg" alt="UPI QR code" ' +
+             'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="fallback" style="display:none">Save your UPI QR as<br><strong>qr.jpg</strong><br>in this folder</div>' +
+      '</div>' +
+      '<div>' +
+        '<p style="font-weight:600;margin-bottom:.2rem">Scan to pay &#8377;449</p>' +
+        '<p class="upi-id">' + UPI_ID + '</p>' +
+        '<ol class="steps">' +
+          '<li><span>1</span>Pay &#8377;449 to the code above</li>' +
+          '<li><span>2</span>' + (ORDER_FORM
+              ? 'Fill in <a href="' + ORDER_FORM + '" style="color:var(--red);font-weight:600">this short form</a> with your address'
+              : 'Send your address to <a href="https://instagram.com/readinterval" style="color:var(--red);font-weight:600">@readinterval</a>') + '</li>' +
+          '<li><span>3</span>Send the payment screenshot with it</li>' +
+        '</ol>' +
+        '<p class="note">Posted within 3 working days. You\'ll get a message when it goes out.</p>' +
+      '</div>' +
+    '</div>';
+
 } else {
   box.innerHTML =
-    '<p style="font-weight:500;max-width:42ch;margin-bottom:1.1rem">Issue 01 isn\'t printed yet. Leave your email and you\'ll be told the morning it is.</p>' +
+    '<p style="font-weight:500;max-width:42ch;margin-bottom:1.1rem">Issue 01 isn\'t printed yet. Leave your details and you\'ll be told the morning it is.</p>' +
     '<a class="btn big" href="index.html#waitlist">Hold one for me</a>';
 }
 </script>

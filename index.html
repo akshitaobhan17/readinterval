@@ -134,10 +134,33 @@
       <div class="panel cobalt">
         <h2 class="head">Issue 01 is a<br>numbered run</h2>
         <p style="max-width:46ch;font-weight:500">Leave your email and you'll get one message the morning it's printed. Nothing else, ever &mdash; no newsletter, no countdown, no six emails about a delay.</p>
-        <form class="guess form" id="signup" novalidate style="margin-top:1.3rem">
-          <label class="sr" for="email">Email address</label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
-          <button class="btn light" type="submit">Hold one for me</button>
+        <form id="signup" novalidate style="margin-top:1.4rem;max-width:36rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem">
+            <div>
+              <label class="sr" for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" style="width:100%">
+            </div>
+            <div>
+              <label class="sr" for="city">City</label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="City" style="width:100%">
+            </div>
+          </div>
+          <div style="margin-bottom:.6rem">
+            <label class="sr" for="email">Email address</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@email.com" style="width:100%">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:.6rem">
+            <div>
+              <label class="sr" for="copies">How many copies</label>
+              <select id="copies" name="copies" style="width:100%">
+                <option value="1">1 copy</option>
+                <option value="2">2 copies</option>
+                <option value="3-5">3 to 5 copies</option>
+                <option value="10+">10 or more &mdash; it's a gift thing</option>
+              </select>
+            </div>
+            <button class="btn light" type="submit">Hold it for me</button>
+          </div>
         </form>
         <p class="said" id="said" role="status" aria-live="polite"></p>
       </div>
