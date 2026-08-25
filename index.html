@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Interval — a newspaper with nothing to report</title>
+<meta name="description" content="An eight-page newspaper filled with games, puzzles and Bollywood. No news. Printed in Mumbai.">
+<meta property="og:title" content="The Interval">
+<meta property="og:description" content="A newspaper with nothing to report. Issue 01, September 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="navbar">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="buy.html">Get a copy</a>
+      <a href="https://instagram.com/readinterval" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="ear">
+      <span>September 2026</span>
+      <span class="mid">All games. No news.</span>
+      <span>Issue No. 01</span>
+    </div>
+    <div class="masthead">
+      <a href="index.html">
+        <span class="the">The</span>
+        <span class="name">Int<span class="kick">e</span>rval</span>
+      </a>
+    </div>
+    <hr class="rule">
+    <div class="strap">
+      <span>Eight pages</span><span class="dot"></span>
+      <span>Nothing to report</span><span class="dot"></span>
+      <span>Printed in Bombay</span>
+    </div>
+    <hr class="rule">
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="wrap">
+      <div class="panel lime">
+        <p class="eyebrow">From page 4 · Say it Out Loud</p>
+        <h2 class="head" style="margin:.3em 0 .2em">Read it aloud until you hear the real phrase.</h2>
+        <p style="max-width:44ch;font-weight:500">Say it fast, out loud, over and over. Your mouth gets there before your eyes do.</p>
+
+        <p class="clue" id="clue">watts up croup</p>
+
+        <div class="guess">
+          <label class="sr" for="answer">Your answer</label>
+          <input id="answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="What do you hear?">
+          <button class="btn" id="check" type="button">Check</button>
+        </div>
+
+        <p class="verdict" id="verdict" role="status" aria-live="polite"></p>
+        <p class="reveal"><button id="giveup" type="button">Give up and show me</button></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <section>
+    <div class="wrap narrow">
+      <h2 class="head">We forgot how to be bored</h2>
+      <p class="lede">Every spare minute became another scroll, another notification, another thing asking for our attention.</p>
+      <p>So I made the paper I wanted to find in a bookshop, on a coffee table, or tucked into a café corner. Eight pages of games and not one word of news.</p>
+      <p style="margin-top:1.2rem"><a href="about.html" style="color:var(--red);font-weight:600">More about it &rarr;</a></p>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <h2 class="head">What's inside</h2>
+        <ul class="ticks">
+          <li>Word games, picture games, and games you say out loud</li>
+          <li>Bollywood, cricket, chai and the world outside</li>
+          <li>A back page you can only play with someone else</li>
+          <li>Small true facts you'll repeat to someone by Tuesday</li>
+          <li>Not one word of news</li>
+        </ul>
+        <p style="margin-top:1.4rem"><a class="btn big" href="buy.html">Get a copy</a></p>
+      </div>
+
+      <div class="spec">
+        <dl>
+          <dt>Pages</dt><dd>8</dd>
+          <dt>Size</dt><dd>11 &times; 17 in, folded</dd>
+          <dt>Games</dt><dd>A paperful</dd>
+          <dt>News</dt><dd>None</dd>
+          <dt>Screens</dt><dd>Zero</dd>
+          <dt>Takes</dt><dd>More than one sitting</dd>
+          <dt>Issue 01</dt><dd>September 2026</dd>
+          <dt>Printed</dt><dd>Mumbai</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <section>
+    <div class="wrap">
+      <h2 class="head">A few of the games</h2>
+      <div class="cards">
+        <article class="card c1"><h3>Cross Wires</h3><p>One word that fits both sides. Auto ____ driver. Chennai ____ way.</p></article>
+        <article class="card c2"><h3>Say it Out Loud</h3><p>Gibberish on the page, a phrase in your mouth. The one you just played.</p></article>
+        <article class="card c3"><h3>Split Screen</h3><p>Three photographs that sound like a film. A sheep, an owl, a ballet dancer.</p></article>
+        <article class="card c4"><h3>Too Literal</h3><p>Food described very badly. Thin crispy disc topped with organised chaos.</p></article>
+        <article class="card c5"><h3>Plot Twist</h3><p>A village avoids a tax bill by learning an unfamiliar sport. Name the film.</p></article>
+        <article class="card c6"><h3>Two Can Play</h3><p>The back page. Not meant to be played alone, so go and grab someone.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist">
+    <div class="wrap">
+      <div class="panel cobalt">
+        <h2 class="head">Issue 01 is a<br>numbered run</h2>
+        <p style="max-width:46ch;font-weight:500">Leave your email and you'll get one message the morning it's printed. Nothing else, ever &mdash; no newsletter, no countdown, no six emails about a delay.</p>
+        <form class="guess form" id="signup" novalidate style="margin-top:1.3rem">
+          <label class="sr" for="email">Email address</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
+          <button class="btn light" type="submit">Hold one for me</button>
+        </form>
+        <p class="said" id="said" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <hr class="rule">
+    <div class="foot">
+      <span>readinterval.in</span>
+      <a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a>
+      <span>Bombay</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

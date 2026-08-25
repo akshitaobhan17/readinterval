@@ -1,0 +1,294 @@
+/* ==========================================================
+   THE INTERVAL — shared styles
+   Fonts matched to the printed paper.
+
+   IF I GUESSED WRONG: you designed it, so you know what you
+   used in Canva. Change the three --font lines below and the
+   <link> in each HTML file. Nothing else needs touching.
+   ========================================================== */
+:root{
+  --cream:#F5EBDF;
+  --ink:#111111;
+  --red:#E23B2E;
+  --cobalt:#2F6FE0;
+  --lime:#C9DB4B;
+  --pink:#E8479B;
+  --mustard:#F2D64B;
+  --olive:#8A9A3D;
+  --sky:#7FB6E0;
+  --coral:#F08A5D;
+  --brick:#A34432;
+
+  /* ---- the three faces from the paper ---- */
+  --display:'Poppins',system-ui,sans-serif;      /* masthead + buttons  */
+  --fat:'Abril Fatface',Georgia,serif;           /* red section heads   */
+  --body:'Poppins',system-ui,sans-serif;         /* everything else     */
+  --serif:'Playfair Display',Georgia,serif;      /* dateline, small caps */
+
+  --rule:5px;
+  --pad:clamp(1.15rem,4.5vw,3.25rem);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:400;
+  font-size:clamp(1rem,.55vw + .92rem,1.08rem);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.35'/></svg>");
+  mix-blend-mode:multiply;
+}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.narrow{max-width:760px}
+.rule{height:var(--rule);background:var(--ink);border:0}
+.thin{height:2px;background:var(--ink);border:0;opacity:.35}
+.sr{position:absolute;left:-9999px}
+
+/* ---------- nav ---------- */
+nav{padding-top:clamp(.8rem,2.4vw,1.4rem)}
+.navbar{
+  display:flex;justify-content:center;gap:clamp(.9rem,3.5vw,2.4rem);flex-wrap:wrap;
+  font-family:var(--body);font-weight:600;text-transform:uppercase;
+  font-size:clamp(.66rem,1.9vw,.78rem);letter-spacing:.14em;padding-bottom:.9rem;
+}
+.navbar a{color:var(--ink);text-decoration:none;padding-bottom:3px;border-bottom:3px solid transparent}
+.navbar a:hover{border-bottom-color:var(--red)}
+.navbar a[aria-current="page"]{border-bottom-color:var(--ink)}
+.navbar a:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+
+/* ---------- masthead ---------- */
+.ear{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(.85rem,2.4vw,1.25rem);letter-spacing:.01em;
+}
+.ear .mid{
+  color:var(--red);font-family:var(--body);font-weight:600;text-transform:uppercase;
+  font-size:clamp(.6rem,1.7vw,.76rem);letter-spacing:.16em;
+}
+@media (max-width:620px){.ear .mid{display:none}}
+
+.masthead{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;text-align:center;
+  line-height:.85;margin:.3em 0 .32em;
+}
+.masthead a{color:inherit;text-decoration:none;display:block}
+.masthead .the{
+  display:block;font-size:clamp(1.3rem,5vw,3rem);letter-spacing:.02em;line-height:1;
+}
+.masthead .name{
+  display:block;font-size:clamp(2.9rem,14.5vw,10rem);letter-spacing:-.02em;
+  white-space:nowrap;
+}
+
+/* ---- the E that falls out of line ---- */
+.masthead .kick{
+  display:inline-block;
+  transform:translateY(.34em) rotate(13deg);
+  transform-origin:50% 50%;
+}
+@media (prefers-reduced-motion:no-preference){
+  .masthead .kick{animation:fall 1.05s .45s both}
+  @keyframes fall{
+    0%   {transform:translateY(0) rotate(0deg)}
+    8%   {transform:translateY(-.03em) rotate(-2deg)}   /* tips, loses grip */
+    45%  {transform:translateY(.26em) rotate(17deg)}    /* lands, overshoots */
+    62%  {transform:translateY(.09em) rotate(9deg)}     /* small bounce */
+    78%  {transform:translateY(.19em) rotate(15deg)}
+    90%  {transform:translateY(.13em) rotate(12deg)}
+    100% {transform:translateY(.15em) rotate(13deg)}
+  }
+}
+.masthead.small .name{font-size:clamp(2.1rem,9.5vw,5.2rem)}
+
+.strap{
+  display:flex;justify-content:center;align-items:center;gap:.85em;flex-wrap:wrap;
+  font-family:var(--body);font-weight:600;text-transform:uppercase;
+  font-size:clamp(.6rem,1.8vw,.82rem);letter-spacing:.18em;padding:.85rem 0 1rem;
+}
+.dot{width:.5em;height:.5em;border-radius:50%;background:var(--red);display:inline-block}
+
+/* ---------- section heads: red fat-face with the paper's offset shadow ---------- */
+h2.head{
+  font-family:var(--fat);font-weight:400;
+  font-size:clamp(2rem,7vw,3.6rem);line-height:1.02;
+  color:var(--red);
+  text-shadow:4px 4px 0 var(--ink);
+  margin-bottom:.4em;letter-spacing:-.005em;
+}
+h2.head.plain{color:var(--ink);text-shadow:none}
+.panel.cobalt h2.head{color:var(--mustard);text-shadow:4px 4px 0 rgba(17,17,17,.85)}
+.panel.lime h2.head,.panel.mustard h2.head{color:var(--red);text-shadow:4px 4px 0 var(--ink)}
+
+h3.sub{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.1rem,3.4vw,1.45rem);line-height:1.1;margin-bottom:.4em;
+}
+.eyebrow{
+  font-family:var(--body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.16em;font-size:clamp(.6rem,1.7vw,.75rem);
+}
+.lede{font-size:clamp(1.05rem,2.8vw,1.28rem);font-weight:500;max-width:46ch}
+p + p{margin-top:1em}
+section{padding:clamp(2.1rem,6vw,3.6rem) 0}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;font-family:var(--display);font-weight:800;
+  text-transform:uppercase;letter-spacing:.02em;
+  font-size:clamp(.92rem,2.4vw,1.05rem);
+  padding:.85rem 1.7rem;cursor:pointer;text-decoration:none;
+  border:4px solid var(--ink);border-radius:14px;
+  background:var(--ink);color:var(--cream);
+  transition:transform .12s ease, background .12s ease;
+}
+.btn:hover{transform:translate(-2px,-2px);background:var(--red)}
+.btn:active{transform:translate(0,0)}
+.btn:focus-visible{outline:4px solid var(--red);outline-offset:3px}
+.btn.light{background:var(--cream);color:var(--ink)}
+.btn.light:hover{background:var(--mustard)}
+.btn.big{font-size:clamp(1rem,3vw,1.3rem);padding:1rem 2.2rem}
+
+/* ---------- panels ---------- */
+.panel{
+  border:var(--rule) solid var(--ink);border-radius:26px;
+  padding:clamp(1.2rem,4vw,2.6rem);
+  box-shadow:10px 10px 0 rgba(17,17,17,.14);
+}
+.panel.lime{background:var(--lime)}
+.panel.cobalt{background:var(--cobalt);color:var(--cream)}
+.panel.mustard{background:var(--mustard)}
+.panel.pink{background:var(--pink)}
+
+/* ---------- hero puzzle ---------- */
+.clue{
+  font-family:var(--display);font-weight:800;text-transform:lowercase;
+  font-size:clamp(1.9rem,8vw,4rem);line-height:1.05;
+  margin:.5em 0 .3em;letter-spacing:-.02em;
+}
+.guess{display:flex;gap:.6rem;flex-wrap:wrap;max-width:38rem}
+.guess input,.form input{
+  flex:1 1 14rem;min-width:0;font-family:var(--body);font-size:1rem;font-weight:500;
+  padding:.85rem 1rem;border:4px solid var(--ink);border-radius:14px;
+  background:var(--cream);color:var(--ink);
+}
+.guess input::placeholder,.form input::placeholder{color:#9a9184}
+.guess input:focus-visible,.form input:focus-visible{outline:4px solid var(--red);outline-offset:3px}
+.verdict{font-family:var(--body);font-weight:600;margin-top:.9rem;min-height:1.5em;font-size:clamp(.85rem,2.2vw,.98rem)}
+.verdict.near{color:var(--brick)}
+.reveal{margin-top:.55rem;font-size:.88rem}
+.reveal button{
+  background:none;color:var(--ink);border:0;padding:0;cursor:pointer;
+  font-family:var(--body);font-weight:500;font-size:.88rem;
+  text-decoration:underline;text-underline-offset:4px;
+}
+.reveal button:hover{color:var(--red)}
+
+/* ---------- spec table ---------- */
+.spec{border:4px solid var(--ink);border-radius:20px;overflow:hidden}
+.spec dl{display:grid;grid-template-columns:auto 1fr}
+.spec dt,.spec dd{
+  padding:.68rem 1rem;border-bottom:2px solid rgba(17,17,17,.16);
+  font-size:clamp(.78rem,2vw,.9rem);
+}
+.spec dt{font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:rgba(17,17,17,.05)}
+.spec dd{text-align:right;font-family:var(--serif);font-size:clamp(.9rem,2.2vw,1.05rem)}
+.spec dl>:nth-last-child(-n+2){border-bottom:0}
+
+/* ---------- grids ---------- */
+.two{display:grid;grid-template-columns:1fr;gap:clamp(1.4rem,4vw,2.6rem)}
+@media (min-width:820px){.two{grid-template-columns:1.15fr .85fr;align-items:start}}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:clamp(.7rem,2vw,1.05rem)}
+.card{
+  border:4px solid var(--ink);border-radius:18px;padding:1.05rem 1.1rem 1.2rem;
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 rgba(17,17,17,.2)}
+.card h3{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(1rem,3.2vw,1.25rem);line-height:1.05;margin-bottom:.45em;letter-spacing:-.01em;
+}
+.card p{font-size:.92rem;line-height:1.5}
+.c1{background:var(--mustard)} .c2{background:var(--sky)} .c3{background:var(--coral)}
+.c4{background:var(--lime)} .c5{background:var(--pink)} .c6{background:var(--cream)}
+
+/* ---------- lists ---------- */
+ul.ticks{list-style:none;margin:1rem 0}
+ul.ticks li{position:relative;padding-left:1.8rem;margin-bottom:.72rem;font-weight:500}
+ul.ticks li::before{
+  content:"";position:absolute;left:0;top:.55em;
+  width:.7rem;height:.7rem;border-radius:50%;background:var(--red);
+}
+.panel.cobalt ul.ticks li::before{background:var(--mustard)}
+
+/* ---------- price ---------- */
+.price{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(2.6rem,10vw,4.4rem);line-height:1;letter-spacing:-.03em;
+}
+.price small{
+  display:block;font-family:var(--body);font-weight:600;
+  font-size:clamp(.68rem,2vw,.82rem);letter-spacing:.12em;
+  text-transform:uppercase;margin-top:.5rem;
+}
+
+/* ---------- signature ---------- */
+.sig{font-family:var(--serif);font-size:1.05rem;margin-top:1.4rem}
+.sig strong{
+  display:block;font-family:var(--display);font-weight:800;
+  font-size:1.5rem;text-transform:uppercase;letter-spacing:-.01em;margin-top:.2rem;
+}
+
+/* ---------- people ---------- */
+.people{display:grid;grid-template-columns:1fr;gap:clamp(1rem,3vw,1.6rem)}
+@media (min-width:700px){.people{grid-template-columns:1fr 1fr}}
+.person{border:4px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--cream)}
+.person .ph{
+  aspect-ratio:4/3;background:var(--sky);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:4px solid var(--ink);
+  font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;
+  color:rgba(17,17,17,.55);text-align:center;padding:1rem;
+}
+.person .ph.alt{background:var(--coral)}
+.person .body{padding:1.1rem 1.2rem 1.3rem}
+
+/* ---------- faq ---------- */
+details{border-bottom:2px solid rgba(17,17,17,.2);padding:1rem 0}
+details summary{
+  cursor:pointer;font-family:var(--display);font-weight:700;
+  font-size:clamp(1rem,3vw,1.2rem);list-style:none;
+  display:flex;justify-content:space-between;gap:1rem;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--red);font-weight:800}
+details[open] summary::after{content:"–"}
+details p{margin-top:.7rem;max-width:60ch}
+details summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+
+/* ---------- footer ---------- */
+footer{padding-bottom:clamp(2rem,6vw,3rem)}
+.foot{
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-family:var(--body);font-weight:600;font-size:clamp(.68rem,1.9vw,.8rem);
+  text-transform:uppercase;letter-spacing:.12em;padding-top:1rem;
+}
+.foot a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--red)}
+.foot a:hover{color:var(--red)}
+.foot a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.said{font-family:var(--body);font-weight:600;margin-top:1rem;min-height:1.4em}
+.note{font-size:.82rem;margin-top:1rem;opacity:.85;max-width:42ch}

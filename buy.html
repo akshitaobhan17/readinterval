@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a copy — The Interval</title>
+<meta name="description" content="Issue 01 of The Interval. Eight pages, no news. Printed in Mumbai in a numbered run.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="buy.html" aria-current="page">Get a copy</a>
+      <a href="https://instagram.com/readinterval" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="masthead small">
+      <a href="index.html">
+        <span class="the">The</span>
+        <span class="name">Int<span class="kick">e</span>rval</span>
+      </a>
+    </div>
+    <hr class="rule">
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="wrap two">
+
+      <div>
+        <div style="border:5px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--sky);box-shadow:10px 10px 0 rgba(17,17,17,.14)">
+          <img src="cover.jpg" alt="The Interval, Issue 01"
+               style="display:block;width:100%;height:auto;object-fit:cover"
+               onerror="this.style.display='none';document.getElementById('coverfallback').style.display='flex'">
+          <div id="coverfallback"
+               style="display:none;aspect-ratio:11/17;align-items:center;justify-content:center;text-align:center;padding:2rem;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.55)">
+            Drop a file called<br><strong style="font-size:1.05rem">cover.jpg</strong><br>into this folder
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Issue No. 01 &middot; September 2026</p>
+        <h2 class="head" style="margin-top:.4em">The Interval</h2>
+        <p style="font-weight:500;max-width:44ch">Eight pages of games and not one word of news. Printed on newsprint in Mumbai, folded once, in a numbered run of 300.</p>
+
+        <p class="price" style="margin-top:1.5rem">&#8377;449<small>Includes delivery anywhere in India</small></p>
+
+        <div id="buybox" style="margin-top:1.6rem"></div>
+
+        <ul class="ticks" style="margin-top:1.8rem">
+          <li>Every game written from scratch, for this paper</li>
+          <li>11 &times; 17 in, eight pages, folded</li>
+          <li>Numbered by hand, 1 to 300</li>
+          <li>Posted within 3 working days</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <section>
+    <div class="wrap">
+      <h2 class="head">What's on each page</h2>
+      <div class="cards" style="margin-top:1.2rem">
+        <article class="card c6"><h3>1 &middot; Cover</h3><p>An original illustration. No games, no text. Just the thing you'll want to keep.</p></article>
+        <article class="card c1"><h3>2&ndash;3 &middot; Between the Lines</h3><p>Cross Wires, Interlock, Double Take, and a mini crossword. The word half.</p></article>
+        <article class="card c4"><h3>4&ndash;5 &middot; At a Glance</h3><p>Films, faces and food described very badly. The half you'll read aloud.</p></article>
+        <article class="card c2"><h3>6 &middot; Playback</h3><p>Songs, singers and playback trivia. Sing it out loud until you hear it.</p></article>
+        <article class="card c5"><h3>7 &middot; Somewhere Out There</h3><p>Airport codes, number plates, and English words that came from India.</p></article>
+        <article class="card c3"><h3>8 &middot; Two Can Play</h3><p>The back page. Bring someone. There are no answers to this one.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <section>
+    <div class="wrap">
+      <div class="panel cobalt">
+        <p class="eyebrow" style="color:var(--mustard)">Ten copies or more</p>
+        <h2 class="head" style="margin-top:.4em">For offices, teams<br>and hampers</h2>
+        <p style="max-width:48ch;font-weight:500">It works better as a gift than most things that cost the same. Diwali hampers, onboarding kits, offsites, a stack on your caf&eacute; counter. Write in and we'll sort out a price and a delivery date.</p>
+        <p style="margin-top:1.5rem"><a class="btn light" href="mailto:hello@readinterval.in?subject=Bulk%20order">Ask about bulk</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="text-align:center">
+      <p style="font-weight:500;margin-bottom:1rem">Shipping, refunds, and everything else</p>
+      <a class="btn" href="about.html#questions">Read the questions</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <hr class="rule">
+    <div class="foot">
+      <span>readinterval.in</span>
+      <a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a>
+      <span>Bombay</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   ONE SWITCH.
+   Before you've printed  ->  MODE = "preorder"
+   Once you have stock    ->  MODE = "buy"
+   PAY_URL: your Razorpay Payment Link.
+========================================================= */
+const MODE    = "preorder";
+const PAY_URL = "";      //  e.g. "https://rzp.io/l/xxxxxxx"
+
+const box = document.getElementById("buybox");
+
+if (MODE === "buy" && PAY_URL) {
+  box.innerHTML =
+    '<a class="btn big" href="' + PAY_URL + '">Buy issue 01</a>' +
+    '<p class="note">UPI, card or netbanking. Secured by Razorpay.</p>';
+} else if (MODE === "buy") {
+  box.innerHTML =
+    '<p class="note" style="opacity:1;color:var(--red)">Paste your Razorpay link into PAY_URL at the bottom of this file.</p>';
+} else {
+  box.innerHTML =
+    '<p style="font-weight:500;max-width:42ch;margin-bottom:1.1rem">Issue 01 isn\'t printed yet. Leave your email and you\'ll be told the morning it is.</p>' +
+    '<a class="btn big" href="index.html#waitlist">Hold one for me</a>';
+}
+</script>
+
+</body>
+</html>
