@@ -9,170 +9,145 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <div class="navbar">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="buy.html" aria-current="page">Get a copy</a>
-      <a href="https://instagram.com/readinterval" rel="noopener">Instagram</a>
-    </div>
-  </div>
-</nav>
-
-<header>
-  <div class="wrap">
-    <div class="masthead small">
-      <a href="index.html">
-        <span class="the">The</span>
-        <span class="name">Int<span class="kick">e</span>rval</span>
-      </a>
-    </div>
-    <hr class="rule">
-  </div>
-</header>
-
+<nav><div class="wrap"><div class="navbar"><a href="index.html">Home</a><a href="about.html">About</a><a href="buy.html" aria-current="page">Get a copy</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
+<header><div class="wrap"><div class="masthead small"><a href="index.html"><span class="the">The</span><span class="name">Int<span class="kick">e</span>rval</span></a></div><hr class="rule"></div></header>
 <main>
+<section><div class="wrap two">
+<div><div style="border:5px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--sky);box-shadow:10px 10px 0 rgba(17,17,17,.14)"><img src="cover.jpg" alt="The Interval, Issue 01" style="display:block;width:100%;height:auto;object-fit:cover"></div></div>
+<div>
+<p class="eyebrow">Issue No. 01 &middot; September 2026</p>
+<h2 class="head" style="margin-top:.4em">The Interval</h2>
+<p style="font-weight:500;max-width:44ch">Eight pages of games and not one word of news. Printed on newsprint in Mumbai, folded once, in a numbered run of 300.</p>
+<p class="price" style="margin-top:1.5rem">&#8377;449<small>Shipping calculated below</small></p>
 
-  <section>
-    <div class="wrap two">
-
-      <div>
-        <div style="border:5px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--sky);box-shadow:10px 10px 0 rgba(17,17,17,.14)">
-          <img src="cover.jpg" alt="The Interval, Issue 01"
-               style="display:block;width:100%;height:auto;object-fit:cover"
-               onerror="this.style.display='none';document.getElementById('coverfallback').style.display='flex'">
-          <div id="coverfallback"
-               style="display:none;aspect-ratio:11/17;align-items:center;justify-content:center;text-align:center;padding:2rem;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.55)">
-            Drop a file called<br><strong style="font-size:1.05rem">cover.jpg</strong><br>into this folder
-          </div>
-        </div>
+<div id="checkout-form" style="margin-top:1.6rem">
+  <div class="panel" style="background:var(--cream);padding:1.2rem">
+    <p class="eyebrow">Where should we send it?</p>
+    <div style="display:grid;gap:.7rem;margin-top:1rem">
+      <input id="customer-name" type="text" autocomplete="name" placeholder="Your name" required style="width:100%">
+      <input id="customer-email" type="email" autocomplete="email" placeholder="Email address" required style="width:100%">
+      <input id="customer-phone" type="tel" autocomplete="tel" placeholder="Phone number" required style="width:100%">
+      <textarea id="customer-address" autocomplete="street-address" placeholder="Full delivery address" required rows="3" style="width:100%;resize:vertical"></textarea>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem">
+        <input id="customer-city" type="text" autocomplete="address-level2" placeholder="City" required style="width:100%">
+        <input id="customer-state" type="text" autocomplete="address-level1" placeholder="State" required style="width:100%">
       </div>
-
-      <div>
-        <p class="eyebrow">Issue No. 01 &middot; September 2026</p>
-        <h2 class="head" style="margin-top:.4em">The Interval</h2>
-        <p style="font-weight:500;max-width:44ch">Eight pages of games and not one word of news. Printed on newsprint in Mumbai, folded once, in a numbered run of 300.</p>
-
-        <p class="price" style="margin-top:1.5rem">&#8377;449<small>Includes delivery anywhere in India</small></p>
-
-        <div id="buybox" style="margin-top:1.6rem"></div>
-
-        <ul class="ticks" style="margin-top:1.8rem">
-          <li>Every game written from scratch, for this paper</li>
-          <li>11 &times; 17 in, eight pages, folded</li>
-          <li>Numbered by hand, 1 to 300</li>
-          <li>Posted within 3 working days</li>
-        </ul>
-      </div>
-
+      <input id="customer-pin" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="PIN code" required style="width:100%">
     </div>
-  </section>
-
-  <hr class="thin">
-
-  <section>
-    <div class="wrap">
-      <h2 class="head">What's on each page</h2>
-      <div class="cards" style="margin-top:1.2rem">
-        <article class="card c6"><h3>1 &middot; Cover</h3><p>An original illustration. No games, no text. Just the thing you'll want to keep.</p></article>
-        <article class="card c1"><h3>2&ndash;3 &middot; Between the Lines</h3><p>Cross Wires, Interlock, Double Take, and a mini crossword. The word half.</p></article>
-        <article class="card c4"><h3>4&ndash;5 &middot; At a Glance</h3><p>Films, faces and food described very badly. The half you'll read aloud.</p></article>
-        <article class="card c2"><h3>6 &middot; Playback</h3><p>Songs, singers and playback trivia. Sing it out loud until you hear it.</p></article>
-        <article class="card c5"><h3>7 &middot; Somewhere Out There</h3><p>Airport codes, number plates, and English words that came from India.</p></article>
-        <article class="card c3"><h3>8 &middot; Two Can Play</h3><p>The back page. Bring someone. There are no answers to this one.</p></article>
-      </div>
+    <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(17,17,17,.18)">
+      <div style="display:flex;justify-content:space-between;gap:1rem"><span>Issue 01</span><strong>₹449</strong></div>
+      <div style="display:flex;justify-content:space-between;gap:1rem;margin-top:.35rem"><span>Shipping</span><strong>Free for now</strong></div>
+      <div style="display:flex;justify-content:space-between;gap:1rem;margin-top:.6rem;font-size:1.1rem"><strong>Total</strong><strong>₹449</strong></div>
     </div>
-  </section>
-
-  <hr class="thin">
-
-  <section>
-    <div class="wrap">
-      <div class="panel cobalt">
-        <p class="eyebrow" style="color:var(--mustard)">Ten copies or more</p>
-        <h2 class="head" style="margin-top:.4em">For offices, teams<br>and hampers</h2>
-        <p style="max-width:48ch;font-weight:500">It works better as a gift than most things that cost the same. Diwali hampers, onboarding kits, offsites, a stack on your caf&eacute; counter. Write in and we'll sort out a price and a delivery date.</p>
-        <p style="margin-top:1.5rem"><a class="btn light" href="mailto:hello@readinterval.in?subject=Bulk%20order">Ask about bulk</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap" style="text-align:center">
-      <p style="font-weight:500;margin-bottom:1rem">Shipping, refunds, and everything else</p>
-      <a class="btn" href="about.html#questions">Read the questions</a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <hr class="rule">
-    <div class="foot">
-      <span>readinterval.in</span>
-      <a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a>
-      <span>Bombay</span>
-    </div>
+    <button class="btn big" id="pay-button" type="button" style="margin-top:1.1rem;width:100%">Buy Issue 01 · ₹449</button>
+    <p class="note" id="payment-message" role="status" aria-live="polite" style="margin-top:.7rem"></p>
   </div>
-</footer>
+</div>
 
+<div id="success" class="panel mustard" style="display:none;margin-top:1.6rem">
+  <p class="eyebrow">Payment received</p>
+  <h2 class="head" style="margin-top:.4em">Your copy is on its way.</h2>
+  <p>Thanks for ordering Issue 01. We'll dispatch it from Mumbai within three working days.</p>
+  <p class="note" id="payment-id"></p>
+</div>
+
+<ul class="ticks" style="margin-top:1.8rem"><li>Every game written from scratch, for this paper</li><li>11 &times; 17 in, eight pages, folded</li><li>Numbered by hand, 1 to 300</li><li>Dispatched from Mumbai within 3 working days</li></ul>
+</div>
+</div></section>
+<hr class="thin">
+<section><div class="wrap"><h2 class="head">What's on each page</h2><div class="cards" style="margin-top:1.2rem"><article class="card c6"><h3>1 &middot; Cover</h3><p>An original illustration. No games, no text. Just the thing you'll want to keep.</p></article><article class="card c1"><h3>2&ndash;3 &middot; Between the Lines</h3><p>Cross Wires, Interlock, Double Take, and a mini crossword. The word half.</p></article><article class="card c4"><h3>4&ndash;5 &middot; At a Glance</h3><p>Films, faces and food described very badly. The half you'll read aloud.</p></article><article class="card c2"><h3>6 &middot; Playback</h3><p>Songs, singers and playback trivia. Sing it out loud until you hear it.</p></article><article class="card c5"><h3>7 &middot; Somewhere Out There</h3><p>Airport codes, number plates, and English words that came from India.</p></article><article class="card c3"><h3>8 &middot; Two Can Play</h3><p>The back page. Bring someone. There are no answers to this one.</p></article></div></div></section>
+<hr class="thin">
+<section><div class="wrap"><div class="panel cobalt"><p class="eyebrow" style="color:var(--mustard)">Ten copies or more</p><h2 class="head" style="margin-top:.4em">For offices, teams<br>and hampers</h2><p style="max-width:48ch;font-weight:500">It works better as a gift than most things that cost the same. Diwali hampers, onboarding kits, offsites, a stack on your caf&eacute; counter. Write in and we'll sort out a price and a delivery date.</p><p style="margin-top:1.5rem"><a class="btn light" href="mailto:readinterval.in@gmail.com?subject=Bulk%20order">Ask about bulk</a></p></div></div></section>
+<section><div class="wrap" style="text-align:center"><p style="font-weight:500;margin-bottom:1rem">Shipping, refunds, and everything else</p><a class="btn" href="about.html#questions">Read the questions</a></div></section>
+</main>
+<footer><div class="wrap"><hr class="rule"><div class="foot"><span>readinterval.in</span><a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a><span>Bombay</span></div></div></footer>
 <script>
-/* =========================================================
-   THREE MODES. Change one word.
+const PRICE_RUPEES = 449;
+const message = document.getElementById('payment-message');
+const payButton = document.getElementById('pay-button');
+const form = document.getElementById('checkout-form');
+const success = document.getElementById('success');
+const paymentId = document.getElementById('payment-id');
 
-   "preorder"  before you have stock  -> email capture
-   "upi"       you have stock         -> your UPI QR code
-   "razorpay"  once orders get busy   -> proper checkout
-
-   For "upi" you need TWO things:
-     1. Save your UPI QR as  qr.jpg  in this folder
-     2. Put your UPI ID in UPI_ID below
-========================================================= */
-const MODE     = "preorder";
-const UPI_ID   = "yourname@upi";                 // e.g. akshita@okhdfcbank
-const ORDER_FORM = "";                           // a Google Form link for the address
-const PAY_URL  = "";                             // Razorpay link, for later
-
-const box = document.getElementById("buybox");
-
-if (MODE === "razorpay" && PAY_URL) {
-  box.innerHTML =
-    '<a class="btn big" href="' + PAY_URL + '">Buy issue 01</a>' +
-    '<p class="note">UPI, card or netbanking. Secured by Razorpay.</p>';
-
-} else if (MODE === "upi") {
-  box.innerHTML =
-    '<div class="pay">' +
-      '<div class="qr">' +
-        '<img src="qr.jpg" alt="UPI QR code" ' +
-             'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
-        '<div class="fallback" style="display:none">Save your UPI QR as<br><strong>qr.jpg</strong><br>in this folder</div>' +
-      '</div>' +
-      '<div>' +
-        '<p style="font-weight:600;margin-bottom:.2rem">Scan to pay &#8377;449</p>' +
-        '<p class="upi-id">' + UPI_ID + '</p>' +
-        '<ol class="steps">' +
-          '<li><span>1</span>Pay &#8377;449 to the code above</li>' +
-          '<li><span>2</span>' + (ORDER_FORM
-              ? 'Fill in <a href="' + ORDER_FORM + '" style="color:var(--red);font-weight:600">this short form</a> with your address'
-              : 'Send your address to <a href="https://instagram.com/readinterval" style="color:var(--red);font-weight:600">@readinterval</a>') + '</li>' +
-          '<li><span>3</span>Send the payment screenshot with it</li>' +
-        '</ol>' +
-        '<p class="note">Posted within 3 working days. You\'ll get a message when it goes out.</p>' +
-      '</div>' +
-    '</div>';
-
-} else {
-  box.innerHTML =
-    '<p style="font-weight:500;max-width:42ch;margin-bottom:1.1rem">Issue 01 isn\'t printed yet. Leave your details and you\'ll be told the morning it is.</p>' +
-    '<a class="btn big" href="index.html#waitlist">Hold one for me</a>';
+function value(id){ return document.getElementById(id).value.trim(); }
+function setMessage(text){ message.textContent = text; }
+function customerDetails(){
+  return {
+    name:value('customer-name'), email:value('customer-email'), phone:value('customer-phone'),
+    address:value('customer-address'), city:value('customer-city'), state:value('customer-state'), pin:value('customer-pin')
+  };
 }
-</script>
+function validCustomer(c){
+  if (!c.name || !c.email.includes('@') || !c.phone || !c.address || !c.city || !c.state || !c.pin) return false;
+  if (!/^\d{6}$/.test(c.pin.replace(/\s/g,''))) return false;
+  return true;
+}
 
+async function startPayment(){
+  const customer = customerDetails();
+  if (!validCustomer(customer)) { setMessage('Please complete your name, email, phone and full delivery address, including a 6-digit PIN code.'); return; }
+
+  payButton.disabled = true;
+  setMessage('Preparing secure checkout…');
+
+  try {
+    const orderResponse = await fetch('/api/create-order', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(customer)
+    });
+    const order = await orderResponse.json();
+    if (!orderResponse.ok) throw new Error(order.error || 'Could not create the order.');
+
+    const keyResponse = await fetch('/api/razorpay-config');
+    const keyData = await keyResponse.json();
+    if (!keyResponse.ok || !keyData.key_id) throw new Error('Razorpay is not configured yet.');
+
+    const options = {
+      key:keyData.key_id,
+      amount:order.amount,
+      currency:order.currency,
+      name:'The Interval',
+      description:'Issue 01 · September 2026',
+      order_id:order.order_id,
+      prefill:{name:customer.name,email:customer.email,contact:customer.phone},
+      notes:{issue:'Issue 01'},
+      theme:{color:'#111111'},
+      modal:{ondismiss:function(){ payButton.disabled=false; setMessage('Checkout closed. Your order has not been placed.'); }},
+      handler:async function(response){
+        setMessage('Confirming your payment…');
+        try {
+          const verifyResponse = await fetch('/api/verify-payment', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(response)
+          });
+          const verified = await verifyResponse.json();
+          if (!verifyResponse.ok || !verified.verified) throw new Error(verified.error || 'Payment could not be verified.');
+          form.style.display='none';
+          success.style.display='block';
+          paymentId.textContent='Payment ID: ' + response.razorpay_payment_id;
+        } catch (error) {
+          payButton.disabled=false;
+          setMessage(error.message || 'Payment verification failed. Please contact readinterval.in@gmail.com.');
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(response){
+      payButton.disabled=false;
+      const description = response.error && response.error.description ? response.error.description : 'Payment failed.';
+      setMessage(description + ' Please try again.');
+    });
+    rzp.open();
+  } catch(error) {
+    payButton.disabled=false;
+    setMessage(error.message || 'Something went wrong. Please try again or email readinterval.in@gmail.com.');
+  }
+}
+
+payButton.addEventListener('click', startPayment);
+</script>
 </body>
 </html>
