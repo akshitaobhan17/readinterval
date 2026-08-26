@@ -14,7 +14,7 @@ async function sendEmail({ to, subject, html, text }) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
@@ -64,8 +64,8 @@ module.exports = async function handler(req, res) {
 
   if (!valid) return res.status(400).json({ error: "Payment verification failed." });
 
-  // Payment is verified. Fetch the Razorpay order to retrieve the delivery
-  // details saved as order notes when the customer started checkout.
+  // The payment is now cryptographically verified. Fetch the Razorpay order
+  // so the delivery details saved as order notes are available for fulfilment.
   let order;
   try {
     const razorpay = new Razorpay({
@@ -89,9 +89,11 @@ module.exports = async function handler(req, res) {
   const deliveryAddress = [address, city, state, pin].filter(Boolean).join(", ");
   const orderAmount = `₹${((Number(order.amount) || 44900) / 100).toFixed(0)}`;
 
-  // Email is an optional post-payment step. A Resend failure must not turn a
-  // successfully verified payment into a failed payment on the customer side.
-  let emailSent = false;
+  // Emails are a post-payment convenience. A Resend outage must not turn a
+  // verified payment into a failed payment on the customer side.
+  let customerEmailSent = false;
+  let ownerEmailSent = false;
+
   if (process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL && customerEmail) {
     try {
       await sendEmail({
@@ -116,7 +118,16 @@ module.exports = async function handler(req, res) {
         `,
         text: `Your Interval order is in.\n\nHi ${customerName},\n\nThanks for ordering Issue 01 of The Interval.\n\nOrder: Issue 01 · September 2026\nAmount: ${orderAmount}\nShipping: Included\nPayment ID: ${razorpay_payment_id}\nDelivery to: ${deliveryAddress}\n\nWe'll dispatch your copy from Mumbai within 3 working days and email you again when it's on its way.\n\n— The Interval`
       });
+      customerEmailSent = true;
+    } catch (error) {
+      console.error("Customer confirmation email failed:", error);
+    }
+  } else {
+    console.warn("Customer email not sent: RESEND_API_KEY, RESEND_FROM_EMAIL, or customer email is missing.");
+  }
 
+  if (process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL) {
+    try {
       await sendEmail({
         to: "readinterval.in@gmail.com",
         subject: `New Interval order · ${customerName} · ${orderAmount}`,
@@ -138,14 +149,15 @@ module.exports = async function handler(req, res) {
         `,
         text: `New Interval order\n\nIssue 01 · September 2026\nAmount: ${orderAmount}\nPayment ID: ${razorpay_payment_id}\nRazorpay Order ID: ${razorpay_order_id}\n\nCustomer\nName: ${customerName}\nEmail: ${customerEmail}\nPhone: ${phone}\nAddress: ${deliveryAddress}`
       });
-
-      emailSent = true;
+      ownerEmailSent = true;
     } catch (error) {
-      console.error("Order confirmation email failed:", error);
+      console.error("Owner order email failed:", error);
     }
-  } else {
-    console.warn("Order email not sent: RESEND_API_KEY, RESEND_FROM_EMAIL, or customer email is missing.");
   }
 
-  return res.status(200).json({ verified: true, email_sent: emailSent });
+  return res.status(200).json({
+    verified: true,
+    customer_email_sent: customerEmailSent,
+    owner_email_sent: ownerEmailSent
+  });
 };
