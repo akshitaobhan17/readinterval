@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="checkout.css">
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
@@ -29,7 +30,6 @@
       <p class="eyebrow">Where should we send it?</p>
       <p class="order-note">Your details are used only to deliver your copy.</p>
     </div>
-
     <div class="order-fields">
       <label class="order-field"><span>Name</span><input id="customer-name" type="text" autocomplete="name" placeholder="Your name" required></label>
       <label class="order-field"><span>Email</span><input id="customer-email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
@@ -41,13 +41,11 @@
       </div>
       <label class="order-field order-field-wide"><span>PIN code</span><input id="customer-pin" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="6-digit PIN" required></label>
     </div>
-
     <div class="order-total">
       <div><span>Issue 01</span><strong>₹449</strong></div>
       <div><span>Shipping</span><strong>Included</strong></div>
       <div class="order-total-final"><strong>Total</strong><strong>₹449</strong></div>
     </div>
-
     <button class="btn big order-button" id="pay-button" type="button">Get Issue 01 · ₹449</button>
     <p class="note" id="payment-message" role="status" aria-live="polite"></p>
   </div>
@@ -71,89 +69,35 @@
 </main>
 <footer><div class="wrap"><hr class="rule"><div class="foot"><span>readinterval.in</span><a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a><span>Bombay</span></div></div></footer>
 <script>
-const PRICE_RUPEES = 449;
 const message = document.getElementById('payment-message');
 const payButton = document.getElementById('pay-button');
 const form = document.getElementById('checkout-form');
 const success = document.getElementById('success');
 const paymentId = document.getElementById('payment-id');
-
 function value(id){ return document.getElementById(id).value.trim(); }
 function setMessage(text){ message.textContent = text; }
-function customerDetails(){
-  return {
-    name:value('customer-name'), email:value('customer-email'), phone:value('customer-phone'),
-    address:value('customer-address'), city:value('customer-city'), state:value('customer-state'), pin:value('customer-pin')
-  };
-}
-function validCustomer(c){
-  if (!c.name || !c.email.includes('@') || !c.phone || !c.address || !c.city || !c.state || !c.pin) return false;
-  if (!/^\d{6}$/.test(c.pin.replace(/\s/g,''))) return false;
-  return true;
-}
-
+function customerDetails(){ return {name:value('customer-name'),email:value('customer-email'),phone:value('customer-phone'),address:value('customer-address'),city:value('customer-city'),state:value('customer-state'),pin:value('customer-pin')}; }
+function validCustomer(c){ if(!c.name || !c.email.includes('@') || !c.phone || !c.address || !c.city || !c.state || !c.pin) return false; return /^\d{6}$/.test(c.pin.replace(/\s/g,'')); }
 async function startPayment(){
   const customer = customerDetails();
-  if (!validCustomer(customer)) { setMessage('Please complete your name, email, phone and full delivery address, including a 6-digit PIN code.'); return; }
-
-  payButton.disabled = true;
-  setMessage('Preparing secure checkout…');
-
-  try {
-    const orderResponse = await fetch('/api/create-order', {
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(customer)
-    });
-    const order = await orderResponse.json();
-    if (!orderResponse.ok) throw new Error(order.error || 'Could not create the order.');
-
-    const keyResponse = await fetch('/api/razorpay-config');
-    const keyData = await keyResponse.json();
-    if (!keyResponse.ok || !keyData.key_id) throw new Error('Razorpay is not configured yet.');
-
-    const options = {
-      key:keyData.key_id,
-      amount:order.amount,
-      currency:order.currency,
-      name:'The Interval',
-      description:'Issue 01 · September 2026',
-      order_id:order.order_id,
-      prefill:{name:customer.name,email:customer.email,contact:customer.phone},
-      notes:{issue:'Issue 01'},
-      theme:{color:'#111111'},
-      modal:{ondismiss:function(){ payButton.disabled=false; setMessage('Checkout closed. Your order has not been placed.'); }},
-      handler:async function(response){
-        setMessage('Confirming your payment…');
-        try {
-          const verifyResponse = await fetch('/api/verify-payment', {
-            method:'POST', headers:{'Content-Type':'application/json'},
-            body:JSON.stringify(response)
-          });
-          const verified = await verifyResponse.json();
-          if (!verifyResponse.ok || !verified.verified) throw new Error(verified.error || 'Payment could not be verified.');
-          form.style.display='none';
-          success.style.display='block';
-          paymentId.textContent='Payment ID: ' + response.razorpay_payment_id;
-        } catch (error) {
-          payButton.disabled=false;
-          setMessage(error.message || 'Payment verification failed. Please contact readinterval.in@gmail.com.');
-        }
-      }
-    };
-
-    const rzp = new Razorpay(options);
-    rzp.on('payment.failed', function(response){
-      payButton.disabled=false;
-      const description = response.error && response.error.description ? response.error.description : 'Payment failed.';
-      setMessage(description + ' Please try again.');
-    });
-    rzp.open();
-  } catch(error) {
-    payButton.disabled=false;
-    setMessage(error.message || 'Something went wrong. Please try again or email readinterval.in@gmail.com.');
-  }
+  if(!validCustomer(customer)){setMessage('Please complete your name, email, phone and full delivery address, including a 6-digit PIN code.');return;}
+  payButton.disabled=true;setMessage('Preparing secure checkout…');
+  try{
+    const orderResponse=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(customer)});
+    const order=await orderResponse.json();if(!orderResponse.ok) throw new Error(order.error||'Could not create the order.');
+    const keyResponse=await fetch('/api/razorpay-config');const keyData=await keyResponse.json();if(!keyResponse.ok||!keyData.key_id) throw new Error('Razorpay is not configured yet.');
+    const options={key:keyData.key_id,amount:order.amount,currency:order.currency,name:'The Interval',description:'Issue 01 · September 2026',order_id:order.order_id,prefill:{name:customer.name,email:customer.email,contact:customer.phone},notes:{issue:'Issue 01'},theme:{color:'#111111'},modal:{ondismiss:function(){payButton.disabled=false;setMessage('Checkout closed. Your order has not been placed.');}},handler:async function(response){
+      setMessage('Confirming your payment…');
+      try{
+        const verifyResponse=await fetch('/api/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});const verified=await verifyResponse.json();
+        if(!verifyResponse.ok||!verified.verified) throw new Error(verified.error||'Payment could not be verified.');
+        form.style.display='none';success.style.display='block';paymentId.textContent='Payment ID: '+response.razorpay_payment_id;
+      }catch(error){payButton.disabled=false;setMessage(error.message||'Payment verification failed. Please contact readinterval.in@gmail.com.');}
+    }};
+    const rzp=new Razorpay(options);rzp.on('payment.failed',function(response){payButton.disabled=false;const description=response.error&&response.error.description?response.error.description:'Payment failed.';setMessage(description+' Please try again.');});rzp.open();
+  }catch(error){payButton.disabled=false;setMessage(error.message||'Something went wrong. Please try again or email readinterval.in@gmail.com.');}
 }
-
-payButton.addEventListener('click', startPayment);
+payButton.addEventListener('click',startPayment);
 </script>
 </body>
 </html>
