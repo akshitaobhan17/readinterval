@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Interval — Orders</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f6f2ea;color:#111}.wrap{max-width:1100px;margin:0 auto;padding:32px 20px}h1{font-size:36px;margin:0 0 8px}.muted{color:#666}.bar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.bar input{padding:12px;border:1px solid #bbb;border-radius:6px;min-width:260px}.btn{padding:12px 16px;border:0;border-radius:6px;background:#111;color:#fff;cursor:pointer}.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status{font-weight:700}.shipped{color:#18794e}.paid{color:#a05a00}.track{display:flex;gap:8px;margin-top:14px}.track input{flex:1;padding:10px;border:1px solid #bbb;border-radius:6px}.small{font-size:13px}.error{color:#b42318;margin:12px 0}.success{color:#18794e;margin:12px 0}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<h1>The Interval — Orders</h1><p class="muted">Private shipping desk. Keep this page/bookmark private.</p>
+<div class="bar"><input id="key" type="password" placeholder="Admin key"><button class="btn" id="load">Load orders</button></div>
+<div id="message"></div><div id="orders"></div>
+</main>
+<script>
+const keyEl=document.getElementById('key'), ordersEl=document.getElementById('orders'), messageEl=document.getElementById('message');
+keyEl.value=localStorage.getItem('interval_admin_key')||'';
+function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+async function loadOrders(){
+ const key=keyEl.value.trim(); if(!key){messageEl.innerHTML='<p class="error">Enter your admin key.</p>';return;}
+ localStorage.setItem('interval_admin_key',key); messageEl.textContent='Loading…';
+ const r=await fetch('/api/admin-orders',{headers:{'x-admin-key':key}}); const data=await r.json().catch(()=>({}));
+ if(!r.ok){messageEl.innerHTML='<p class="error">'+esc(data.error||'Could not load orders.')+'</p>';return;}
+ messageEl.textContent='';
+ ordersEl.innerHTML=data.orders.length?data.orders.map(o=>`<section class="card"><div class="grid"><div><strong>${esc(o.name)}</strong><br><span class="small">${esc(o.email)} · ${esc(o.phone)}</span><p>${esc([o.address,o.city,o.state,o.pin].filter(Boolean).join(', '))}</p></div><div><div>Order: <strong>${esc(o.id)}</strong></div><div>Amount: ₹${(o.amount/100).toFixed(0)}</div><div>Status: <span class="status ${o.status==='Shipped'?'shipped':'paid'}">${esc(o.status)}</span></div>${o.tracking?`<div>Tracking: <strong>${esc(o.tracking)}</strong></div>`:''}</div></div>${o.status==='Shipped'?'<p class="success">Shipping email sent.</p>':`<div class="track"><input id="track-${esc(o.id)}" placeholder="India Post tracking / article number"><button class="btn" onclick="ship('${esc(o.id)}')">Mark shipped + email</button></div>`}</section>`).join(''):'<p>No paid Interval orders found.</p>';
+}
+async function ship(orderId){
+ const tracking=document.getElementById('track-'+orderId).value.trim(); if(!tracking){alert('Enter the India Post tracking number first.');return;}
+ const key=keyEl.value.trim(); const r=await fetch('/api/ship-order',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify({order_id:orderId,tracking_number:tracking})}); const data=await r.json().catch(()=>({}));
+ if(!r.ok){alert(data.error||'Could not send shipping email.');return;} await loadOrders(); alert('Shipped email sent.');
+}
+document.getElementById('load').onclick=loadOrders;
+if(keyEl.value) loadOrders();
+</script></body></html>
