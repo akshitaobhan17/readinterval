@@ -1,57 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get a copy — The Interval</title>
-<meta name="description" content="Get Issue 02 of The Interval, or take both September and October together.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="checkout.css">
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<style>
-.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.4rem}
-.shop-card{border:5px solid var(--ink);border-radius:20px;padding:1.2rem;background:var(--cream);box-shadow:8px 8px 0 rgba(17,17,17,.12);cursor:pointer;transition:transform .14s ease,box-shadow .14s ease}
-.shop-card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 rgba(17,17,17,.15)}
-.shop-card.selected{background:var(--mustard);box-shadow:10px 10px 0 var(--ink);transform:translate(-2px,-2px)}
-.shop-card.bundle{background:var(--pink)}
-.shop-card.bundle.selected{box-shadow:10px 10px 0 var(--ink)}
-.shop-card h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.5rem;line-height:1;margin-bottom:.3rem}
-.shop-price{font-family:var(--display);font-weight:800;font-size:2.8rem;line-height:1;margin:1rem 0 .25rem}.shop-old{text-decoration:line-through;opacity:.6;font-weight:600}.shop-save{text-transform:uppercase;font-weight:800;letter-spacing:.12em;font-size:.7rem}
-.shop-check{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-weight:700;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}.shop-check span{width:1.1rem;height:1.1rem;border:3px solid var(--ink);border-radius:50%;display:inline-block}.selected .shop-check span{background:var(--ink)}
-.preview-note{margin-top:1rem;border:3px dashed var(--ink);padding:.8rem 1rem;font-size:.84rem;font-weight:600;background:var(--cream)}
-@media(max-width:700px){.shop-grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Get a copy — The Interval</title><meta name="description" content="Get Issue 02 of The Interval, or take both September and October together."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Bree+Serif&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="checkout.css"><script src="https://checkout.razorpay.com/v1/checkout.js"></script><style>
+.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.4rem}.shop-card{border:5px solid var(--ink);border-radius:20px;padding:1.2rem;background:var(--cream);box-shadow:8px 8px 0 rgba(17,17,17,.12);cursor:pointer;transition:transform .14s ease,box-shadow .14s ease}.shop-card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 rgba(17,17,17,.15)}.shop-card.selected{background:var(--mustard);box-shadow:10px 10px 0 var(--ink);transform:translate(-2px,-2px)}.shop-card.bundle{background:var(--pink)}.shop-card.bundle.selected{box-shadow:10px 10px 0 var(--ink)}.shop-card h2{font-family:var(--fat);font-weight:400;font-size:1.8rem;line-height:1;margin-bottom:.3rem}.shop-price{font-family:var(--display);font-weight:800;font-size:2.8rem;line-height:1;margin:1rem 0 .25rem}.shop-old{text-decoration:line-through;opacity:.6;font-weight:600}.shop-save{text-transform:uppercase;font-weight:800;letter-spacing:.12em;font-size:.7rem}.shop-check{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-weight:700;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}.shop-check span{width:1.1rem;height:1.1rem;border:3px solid var(--ink);border-radius:50%;display:inline-block}.selected .shop-check span{background:var(--ink)}.preview-note{margin-top:1rem;border:3px dashed var(--ink);padding:.8rem 1rem;font-size:.84rem;font-weight:600;background:var(--cream)}@media(max-width:700px){.shop-grid{grid-template-columns:1fr}}
+</style></head><body>
 <nav><div class="wrap"><div class="navbar"><a href="index.html">Home</a><a href="about.html">About</a><a href="buy.html" aria-current="page">Get a copy</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
 <header><div class="wrap"><div class="masthead small"><a href="index.html"><span class="the">The</span><span class="name">Int<span class="kick">e</span>rval</span></a></div><hr class="rule"></div></header>
-<main>
-<section><div class="wrap"><p class="eyebrow">Get your copy</p><h1 class="head" style="margin-top:.35em">Choose your Interval.</h1><p class="lede">The latest issue, or the first two together. Both are eight pages. Neither contains any news.</p>
-<div class="shop-grid" id="take-two">
-<article class="shop-card selected" data-product="october" data-price="449" data-label="Issue 02 · October 2026"><h2>Issue 02</h2><p>October 2026</p><div class="shop-price">₹449</div><p>Shipping included.</p><div class="shop-check"><span></span> Choose October</div></article>
-<article class="shop-card bundle" data-product="take-two" data-price="799" data-label="The Interval Set · Issues 01 + 02"><h2>Take Two</h2><p>September + October</p><div class="shop-price">₹799</div><p><span class="shop-old">₹898</span> &nbsp; <strong>Save ₹99</strong></p><div class="shop-check"><span></span> Get both</div></article>
-</div>
-<div class="preview-note">PREVIEW MODE · The October cover shown here is a temporary visual placeholder. Payment remains on the existing Issue 01 flow until the October fulfilment details are confirmed.</div>
-</div></section>
-<hr class="thin">
-<section><div class="wrap two"><div><p class="eyebrow">What you get</p><h2 class="head">A paperful of things to do.</h2><ul class="ticks"><li>Eight pages printed on newsprint</li><li>Games, puzzles, Bollywood and curious things</li><li>Designed to be played, read aloud and shared</li><li>No news. No notifications. No infinite scroll.</li></ul></div><div class="panel lime"><p class="eyebrow">Take two</p><h2 class="head">Start at the beginning.</h2><p>Issue 01 was the first Interval. Issue 02 is the next one. Get both together and save ₹99.</p><p style="margin-top:1rem"><strong>₹799 · shipping included</strong></p></div></div></section>
-<hr class="thin">
-<section><div class="wrap"><div class="panel cobalt"><p class="eyebrow" style="color:var(--mustard)">Your details</p><h2 class="head" style="color:var(--mustard)">Where should we send it?</h2><p style="max-width:44ch;font-weight:500">This checkout block is retained from the current site so the preview shows the final purchase experience. We will connect the selected October product to Razorpay after you approve the design.</p>
-<div id="checkout-form" class="order-wrap" style="margin-top:1.4rem"><div class="panel order-panel" style="background:var(--cream)">
-<div class="order-heading"><p class="eyebrow">Selected</p><p class="order-note" id="selected-label">Issue 02 · October 2026</p></div>
-<div class="order-total"><div><span id="selected-product">Issue 02</span><strong id="selected-price">₹449</strong></div><div><span>Shipping</span><strong>Included</strong></div><div class="order-total-final"><strong>Total</strong><strong id="selected-total">₹449</strong></div></div>
-<button class="btn big order-button" type="button" disabled>Preview only — checkout not yet connected</button>
-<p class="note">We'll activate this after the October issue, price and fulfilment details are final.</p>
-</div></div>
-</div></div></section>
-</main>
+<main><section><div class="wrap"><p class="eyebrow">Get your copy</p><h1 class="head" style="margin-top:.35em">Choose your Interval.</h1><p class="lede">The latest issue, or the first two together. Both are eight pages. Neither contains any news.</p><div class="shop-grid" id="take-two"><article class="shop-card selected" data-product="october" data-price="449" data-label="Issue 02 · October 2026"><h2>Issue 02</h2><p>October 2026</p><div class="shop-price">₹449</div><p>Shipping included.</p><div class="shop-check"><span></span> Choose October</div></article><article class="shop-card bundle" data-product="take-two" data-price="799" data-label="The Interval Set · Issues 01 + 02"><h2>Take Two</h2><p>September + October</p><div class="shop-price">₹799</div><p><span class="shop-old">₹898</span> &nbsp; <strong>Save ₹99</strong></p><div class="shop-check"><span></span> Get both</div></article></div><div class="preview-note">PREVIEW MODE · Payment is intentionally disabled here. Once you approve the design, we can connect the selected product to your live Razorpay account.</div></div></section>
+<hr class="thin"><section><div class="wrap two"><div><p class="eyebrow">What you get</p><h2 class="head">A paperful of things to do.</h2><ul class="ticks"><li>Eight pages printed on newsprint</li><li>Games, puzzles, Bollywood and curious things</li><li>Designed to be played, read aloud and shared</li><li>No news. No notifications. No infinite scroll.</li></ul></div><div class="panel lime"><p class="eyebrow">Take two</p><h2 class="head">Start at the beginning.</h2><p>Issue 01 was the first Interval. Issue 02 is the next one. Get both together and save ₹99.</p><p style="margin-top:1rem"><strong>₹799 · shipping included</strong></p></div></div></section>
+<hr class="thin"><section><div class="wrap"><div class="panel cobalt"><p class="eyebrow" style="color:var(--mustard)">Your details</p><h2 class="head" style="color:var(--mustard)">Where should we send it?</h2><p style="max-width:44ch;font-weight:500">The final checkout will use the same form and Razorpay flow already built into the site, but with the selected October product and bundle passed through correctly.</p><div id="checkout-form" class="order-wrap" style="margin-top:1.4rem"><div class="panel order-panel" style="background:var(--cream)"><div class="order-heading"><p class="eyebrow">Selected</p><p class="order-note" id="selected-label">Issue 02 · October 2026</p></div><div class="order-total"><div><span id="selected-product">Issue 02</span><strong id="selected-price">₹449</strong></div><div><span>Shipping</span><strong>Included</strong></div><div class="order-total-final"><strong>Total</strong><strong id="selected-total">₹449</strong></div></div><button class="btn big order-button" type="button" disabled>Preview only — payment disabled</button><p class="note">Nothing will be charged while we're reviewing the preview.</p></div></div></div></div></section></main>
 <footer><div class="wrap"><hr class="rule"><div class="foot"><span>readinterval.in</span><a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a><span>Bombay</span></div></div></footer>
-<script>
-const cards=[...document.querySelectorAll('.shop-card')];
-const label=document.getElementById('selected-label'), product=document.getElementById('selected-product'), price=document.getElementById('selected-price'), total=document.getElementById('selected-total');
-cards.forEach(card=>card.addEventListener('click',()=>{cards.forEach(c=>c.classList.remove('selected'));card.classList.add('selected');const p=card.dataset.price;label.textContent=card.dataset.label;product.textContent=card.dataset.product==='take-two'?'The Interval Set':'Issue 02';price.textContent='₹'+p;total.textContent='₹'+p;}));
-</script>
-</body>
-</html>
+<script>const cards=[...document.querySelectorAll('.shop-card')];const label=document.getElementById('selected-label'),product=document.getElementById('selected-product'),price=document.getElementById('selected-price'),total=document.getElementById('selected-total');cards.forEach(card=>card.addEventListener('click',()=>{cards.forEach(c=>c.classList.remove('selected'));card.classList.add('selected');const p=card.dataset.price;label.textContent=card.dataset.label;product.textContent=card.dataset.product==='take-two'?'The Interval Set':'Issue 02';price.textContent='₹'+p;total.textContent='₹'+p;}));</script></body></html>
