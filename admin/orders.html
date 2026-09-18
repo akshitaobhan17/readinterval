@@ -1,56 +1,46 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Interval — Orders</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Interval — Orders</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f6f2ea;color:#111}.wrap{max-width:1100px;margin:0 auto;padding:32px 20px}h1{font-size:36px;margin:0 0 8px}.muted{color:#666}.bar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.bar input{padding:12px;border:1px solid #bbb;border-radius:6px;min-width:260px}.btn{padding:12px 16px;border:0;border-radius:6px;background:#111;color:#fff;cursor:pointer}.btn.secondary{background:#eee;color:#111}.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status{font-weight:700}.shipped{color:#18794e}.delivered{color:#18794e}.paid{color:#a05a00}.track{display:flex;gap:8px;margin-top:14px}.track input{flex:1;padding:10px;border:1px solid #bbb;border-radius:6px}.small{font-size:13px}.error{color:#b42318;margin:12px 0}.success{color:#18794e;margin:12px 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tracking-link{color:#111;font-weight:700}.date{font-size:13px;color:#666;margin-top:6px}@media(max-width:700px){.grid{grid-template-columns:1fr}.track{flex-direction:column}}
-</style>
-</head>
-<body><main class="wrap">
-<h1>The Interval — Orders</h1><p class="muted">Private shipping desk. Keep this page/bookmark private.</p>
-<div class="bar"><input id="key" type="password" placeholder="Admin key"><button class="btn" id="load">Load orders</button><button class="btn secondary" id="add">+ Add manual / gift order</button></div><div id="manualForm" style="display:none;background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:14px 0"><h2>Add manual / gift order</h2><p class="muted">For creator gifts, PR copies, replacements and offline orders. These do not use Razorpay.</p><div class="grid"><input id="mName" placeholder="Name"><input id="mEmail" placeholder="Email"><input id="mPhone" placeholder="Phone"><input id="mProduct" value="Issue 01" placeholder="Product"><input id="mAddress" placeholder="Address"><input id="mCity" placeholder="City"><input id="mState" placeholder="State"><input id="mPin" placeholder="PIN"><input id="mTracking" placeholder="Tracking number (optional)"><input id="mReason" value="Creator gift" placeholder="Reason"></div><div class="actions"><button class="btn" id="saveManual">Add order</button><button class="btn secondary" id="cancelManual">Cancel</button></div></div>
-<div id="message"></div><div id="orders"></div>
-</main>
+body{font-family:Arial,sans-serif;margin:0;background:#f6f2ea;color:#111}.wrap{max-width:1100px;margin:0 auto;padding:32px 20px}h1{font-size:36px;margin:0 0 8px}.muted{color:#666}.bar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.bar input{padding:12px;border:1px solid #bbb;border-radius:6px;min-width:260px}.btn{padding:12px 16px;border:0;border-radius:6px;background:#111;color:#fff;cursor:pointer}.btn.secondary{background:#eee;color:#111}.card,.form{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:14px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid input{padding:11px;border:1px solid #bbb;border-radius:6px}.status{font-weight:700}.shipped{color:#18794e}.delivered{color:#18794e}.paid{color:#a05a00}.manual{color:#6b46c1}.track{display:flex;gap:8px;margin-top:14px}.track input{flex:1;padding:10px;border:1px solid #bbb;border-radius:6px}.small{font-size:13px}.error{color:#b42318}.success{color:#18794e}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tracking-link{color:#111;font-weight:700}.date{font-size:13px;color:#666;margin-top:6px}@media(max-width:700px){.grid{grid-template-columns:1fr}.track{flex-direction:column}}
+</style></head><body><main class="wrap">
+<h1>The Interval — Orders</h1><p class="muted">Private shipping desk.</p>
+<div class="bar"><input id="key" type="password" placeholder="Admin key"><button class="btn" id="load">Load orders</button><button class="btn secondary" id="add">+ Add manual / gift order</button></div>
+<div id="manualForm" class="form" style="display:none"><h2>Add manual / gift order</h2><p class="muted">For creator gifts, PR copies, replacements and offline orders. No Razorpay payment is created.</p><div class="grid">
+<input id="mName" placeholder="Name"><input id="mEmail" placeholder="Email"><input id="mPhone" placeholder="Phone"><input id="mProduct" value="Issue 01" placeholder="Product">
+<input id="mAddress" placeholder="Address"><input id="mCity" placeholder="City"><input id="mState" placeholder="State"><input id="mPin" placeholder="PIN">
+<input id="mTracking" placeholder="Tracking number"><input id="mReason" value="Creator gift" placeholder="Reason">
+</div><div class="actions"><button class="btn" id="saveManual">Add order</button><button class="btn secondary" id="cancelManual">Cancel</button></div></div>
+<div id="message"></div><div id="orders"></div></main>
 <script>
-const keyEl=document.getElementById('key'), ordersEl=document.getElementById('orders'), messageEl=document.getElementById('message');
-const manualKey='interval_manual_orders_v1';
-function getManual(){try{return JSON.parse(localStorage.getItem(manualKey)||'[]')}catch{return[]}}
-function saveManual(x){localStorage.setItem(manualKey,JSON.stringify(x))}
-function renderManual(){return getManual().map(o=>`<section class="card"><div class="grid"><div><strong>${esc(o.name)}</strong><br><span class="small">${esc(o.email)} · ${esc(o.phone)}</span><p>${esc([o.address,o.city,o.state,o.pin].filter(Boolean).join(', '))}</p><p class="small">${esc(o.product)} · ${esc(o.reason)}</p></div><div><div>Order: <strong>${esc(o.id)}</strong></div><div>Type: <span class="status" style="color:#6b46c1">Manual / Gifted</span></div><div>Status: <span class="status shipped">Shipped</span></div>${o.tracking?`<div>Tracking: <strong>${esc(o.tracking)}</strong></div>`:''}</div></div><div class="actions"><button class="btn green" onclick="sendGift('${esc(o.id)}')">Send gift confirmation</button></div></section>`).join('')}
-async function sendGift(id){const o=getManual().find(x=>x.id===id);if(!o)return;if(!confirm('Send gift confirmation to '+o.email+'?'))return;const key=keyEl.value.trim();const r=await fetch('/api/manual-order-email',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify({order:o})});const d=await r.json().catch(()=>({}));if(!r.ok){alert(d.error||'Could not send email.');return}alert('Gift confirmation sent.')}
-document.getElementById('add').onclick=()=>document.getElementById('manualForm').style.display='block';
-document.getElementById('cancelManual').onclick=()=>document.getElementById('manualForm').style.display='none';
-document.getElementById('saveManual').onclick=()=>{const o={id:'MAN-'+Date.now(),name:document.getElementById('mName').value.trim(),email:document.getElementById('mEmail').value.trim(),phone:document.getElementById('mPhone').value.trim(),product:document.getElementById('mProduct').value.trim()||'The Interval',address:document.getElementById('mAddress').value.trim(),city:document.getElementById('mCity').value.trim(),state:document.getElementById('mState').value.trim(),pin:document.getElementById('mPin').value.trim(),tracking:document.getElementById('mTracking').value.trim(),reason:document.getElementById('mReason').value.trim()||'Manual',createdAt:new Date().toISOString()};if(!o.name||!o.email||!o.address){alert('Name, email and address are required.');return}saveManual([o,...getManual()]);document.getElementById('manualForm').style.display='none';loadOrders()};
-
-keyEl.value=localStorage.getItem('interval_admin_key')||'';
+const keyEl=document.getElementById('key'),ordersEl=document.getElementById('orders'),messageEl=document.getElementById('message');
 function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function indiaPostUrl(){return 'https://www.indiapost.gov.in/';}
 async function loadOrders(){
- const key=keyEl.value.trim(); if(!key){messageEl.innerHTML='<p class="error">Enter your admin key.</p>';return;}
- localStorage.setItem('interval_admin_key',key); messageEl.textContent='Loading…';
- const r=await fetch('/api/admin-orders',{headers:{'x-admin-key':key}}); const data=await r.json().catch(()=>({}));
- if(!r.ok){messageEl.innerHTML='<p class="error">'+esc(data.error||'Could not load orders.')+'</p>';return;}
+ const key=keyEl.value.trim();if(!key){messageEl.innerHTML='<p class="error">Enter your admin key.</p>';return}
+ localStorage.setItem('interval_admin_key',key);messageEl.textContent='Loading…';
+ const r=await fetch('/api/admin-orders',{headers:{'x-admin-key':key}}),d=await r.json().catch(()=>({}));
+ if(!r.ok){messageEl.innerHTML='<p class="error">'+esc(d.error||'Could not load orders.')+'</p>';return}
  messageEl.textContent='';
- ordersEl.innerHTML=renderManual()+(data.orders.length?data.orders.map(o=>{
-   const status=o.status||'Paid';
-   const statusClass=status==='Delivered'?'delivered':status==='Shipped'?'shipped':'paid';
-   const delivered=status==='Delivered';
-   const shipped=status==='Shipped';
-   return `<section class="card"><div class="grid"><div><strong>${esc(o.name)}</strong><br><span class="small">${esc(o.email)} · ${esc(o.phone)}</span><p>${esc([o.address,o.city,o.state,o.pin].filter(Boolean).join(', '))}</p></div><div><div>Order: <strong>${esc(o.id)}</strong></div><div>Amount: ₹${(o.amount/100).toFixed(0)}</div><div>Status: <span class="status ${statusClass}">${esc(status)}</span></div>${o.tracking?`<div>Tracking: <strong>${esc(o.tracking)}</strong></div><div><a class="tracking-link" href="${indiaPostUrl()}" target="_blank" rel="noopener">Track on India Post →</a></div>`:''}${o.shippedAt?`<div class="date">Shipped: ${esc(new Date(o.shippedAt).toLocaleString())}</div>`:''}${o.deliveredAt?`<div class="date">Delivered: ${esc(new Date(o.deliveredAt).toLocaleString())}</div>`:''}</div></div>${delivered?'<p class="success">Delivery email sent.</p>':shipped?`<div class="actions"><button class="btn" onclick="deliver('${esc(o.id)}')">Mark delivered + email</button></div>`:`<div class="track"><input id="track-${esc(o.id)}" placeholder="India Post tracking / article number"><button class="btn" onclick="ship('${esc(o.id)}')">Mark shipped + email</button></div>`}</section>`;
- }).join(''):'<p>No paid Interval orders found.</p>';
+ ordersEl.innerHTML=d.orders.length?d.orders.map(renderOrder).join(''):'<p>No Interval orders found.</p>';
 }
-async function ship(orderId){
- const tracking=document.getElementById('track-'+orderId).value.trim(); if(!tracking){alert('Enter the India Post tracking number first.');return;}
- const key=keyEl.value.trim(); const r=await fetch('/api/ship-order',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify({order_id:orderId,tracking_number:tracking})}); const data=await r.json().catch(()=>({}));
- if(!r.ok){alert(data.error||'Could not send shipping email.');return;} await loadOrders(); alert('Shipped email sent.');
+function renderOrder(o){
+ const manual=o.type==='manual',status=o.status||'Paid',delivered=status==='Delivered',shipped=status==='Shipped';
+ const statusClass=delivered?'delivered':shipped?'shipped':manual?'manual':'paid';
+ const controls=manual?(delivered?'<p class="success">Delivered.</p>':shipped?'<div class="actions"><button class="btn" onclick="manualDeliver(\''+esc(o.id)+'\')">Mark delivered</button><button class="btn secondary" onclick="sendGift(\''+esc(o.id)+'\')">Send gift email</button></div>':'<div class="track"><input id="mtrack-'+esc(o.id)+'" value="'+esc(o.tracking||'')+'" placeholder="Tracking number"><button class="btn" onclick="manualShip(\''+esc(o.id)+'\')">Mark shipped</button><button class="btn secondary" onclick="sendGift(\''+esc(o.id)+'\')">Send gift email</button></div>'):delivered?'<p class="success">Delivery email sent.</p>':shipped?'<div class="actions"><button class="btn" onclick="deliver(\''+esc(o.id)+'\')">Mark delivered + email</button></div>':'<div class="track"><input id="track-'+esc(o.id)+'" placeholder="India Post tracking / article number"><button class="btn" onclick="ship(\''+esc(o.id)+'\')">Mark shipped + email</button></div>';
+ return '<section class="card"><div class="grid"><div><strong>'+esc(o.name)+'</strong><br><span class="small">'+esc(o.email)+' · '+esc(o.phone)+'</span><p>'+esc([o.address,o.city,o.state,o.pin].filter(Boolean).join(', '))+'</p><p class="small">'+esc(o.product||'')+(o.reason?' · '+esc(o.reason):'')+'</p></div><div><div>Order: <strong>'+esc(o.id)+'</strong></div><div>'+(manual?'Type: <span class="status manual">Manual / Gifted</span>':'Amount: ₹'+(o.amount/100).toFixed(0))+'</div><div>Status: <span class="status '+statusClass+'">'+esc(status)+'</span></div>'+(o.tracking?'<div>Tracking: <strong>'+esc(o.tracking)+'</strong></div>':'')+(o.shippedAt?'<div class="date">Shipped: '+esc(new Date(o.shippedAt).toLocaleString())+'</div>':'')+(o.deliveredAt?'<div class="date">Delivered: '+esc(new Date(o.deliveredAt).toLocaleString())+'</div>':'')+'</div></div>'+controls+'</section>';
 }
-async function deliver(orderId){
- if(!confirm('Mark this order as delivered and send the customer their delivery email?')) return;
- const key=keyEl.value.trim(); const r=await fetch('/api/deliver-order',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify({order_id:orderId})}); const data=await r.json().catch(()=>({}));
- if(!r.ok){alert(data.error||'Could not send delivery email.');return;} await loadOrders(); alert('Delivery email sent.');
+async function addManual(){
+ const o={id:'MAN-'+Date.now(),name:mName.value.trim(),email:mEmail.value.trim(),phone:mPhone.value.trim(),product:mProduct.value.trim()||'The Interval',address:mAddress.value.trim(),city:mCity.value.trim(),state:mState.value.trim(),pin:mPin.value.trim(),tracking:mTracking.value.trim(),reason:mReason.value.trim()||'Manual',status:'Shipped',createdAt:new Date().toISOString()};
+ if(!o.name||!o.email||!o.address){alert('Name, email and address are required.');return}
+ const r=await fetch('/api/manual-orders',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':keyEl.value.trim()},body:JSON.stringify({order:o})}),d=await r.json().catch(()=>({}));
+ if(!r.ok){alert(d.error||'Could not add order.');return}
+ manualForm.style.display='none';await loadOrders();
 }
-document.getElementById('load').onclick=loadOrders;
-if(keyEl.value) loadOrders();
+async function updateManual(id,status,tracking){const r=await fetch('/api/manual-orders',{method:'PATCH',headers:{'Content-Type':'application/json','x-admin-key':keyEl.value.trim()},body:JSON.stringify({order_id:id,status,tracking})});const d=await r.json().catch(()=>({}));if(!r.ok){alert(d.error||'Could not update order.');return false}return true}
+async function manualShip(id){const t=document.getElementById('mtrack-'+id).value.trim();if(!t){alert('Enter tracking number first.');return}if(await updateManual(id,'Shipped',t))await loadOrders();}
+async function manualDeliver(id){if(!confirm('Mark this order as delivered?'))return;if(await updateManual(id,'Delivered'))await loadOrders();}
+async function sendGift(id){if(!confirm('Send gift confirmation email to this recipient?'))return;const r=await fetch('/api/manual-order-email',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':keyEl.value.trim()},body:JSON.stringify({order_id:id})});const d=await r.json().catch(()=>({}));if(!r.ok){alert(d.error||'Could not send email.');return}alert('Gift confirmation sent.');}
+async function ship(id){const t=document.getElementById('track-'+id).value.trim();if(!t){alert('Enter tracking number first.');return}const r=await fetch('/api/ship-order',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':keyEl.value.trim()},body:JSON.stringify({order_id:id,tracking_number:t})});const d=await r.json().catch(()=>({}));if(!r.ok){alert(d.error||'Could not send shipping email.');return}await loadOrders();alert('Shipped email sent.');}
+async function deliver(id){if(!confirm('Mark this order as delivered and send the delivery email?'))return;const r=await fetch('/api/deliver-order',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':keyEl.value.trim()},body:JSON.stringify({order_id:id})});const d=await r.json().catch(()=>({}));if(!r.ok){alert(d.error||'Could not send delivery email.');return}await loadOrders();alert('Delivery email sent.');}
+document.getElementById('add').onclick=()=>manualForm.style.display='block';document.getElementById('cancelManual').onclick=()=>manualForm.style.display='none';document.getElementById('saveManual').onclick=addManual;document.getElementById('load').onclick=loadOrders;keyEl.value=localStorage.getItem('interval_admin_key')||'';if(keyEl.value)loadOrders();
 </script></body></html>
