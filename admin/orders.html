@@ -14,11 +14,10 @@ body{font-family:Arial,sans-serif;margin:0;background:#f6f2ea;color:#111}.wrap{m
 <script>
 const keyEl=document.getElementById('key'),ordersEl=document.getElementById('orders'),messageEl=document.getElementById('message');
 function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
-function indiaPostUrl(){return 'https://www.indiapost.gov.in/';}
 async function loadOrders(){
  const key=keyEl.value.trim();if(!key){messageEl.innerHTML='<p class="error">Enter your admin key.</p>';return}
  localStorage.setItem('interval_admin_key',key);messageEl.textContent='Loading…';
- const r=await fetch('/api/admin-orders',{headers:{'x-admin-key':key}}),d=await r.json().catch(()=>({}));
+ const r=await fetch('/api/admin-orders?t='+Date.now(),{cache:'no-store',headers:{'x-admin-key':key,'cache-control':'no-cache'}}),d=await r.json().catch(()=>({}));
  if(!r.ok){messageEl.innerHTML='<p class="error">'+esc(d.error||'Could not load orders.')+'</p>';return}
  messageEl.textContent='';
  ordersEl.innerHTML=d.orders.length?d.orders.map(renderOrder).join(''):'<p>No Interval orders found.</p>';
