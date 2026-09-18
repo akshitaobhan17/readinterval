@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
       const updated = { ...orders[index] };
       if (body.status) updated.status = body.status;
       if (body.tracking !== undefined) updated.tracking = String(body.tracking || "").slice(0,100);
-      if (body.status === "Shipped") updated.shippedAt = updated.shippedAt || new Date().toISOString();
+      if (body.status === "Shipped") { updated.shippedAt = updated.shippedAt || new Date().toISOString(); }
       if (body.status === "Delivered") updated.deliveredAt = updated.deliveredAt || new Date().toISOString();
       orders[index] = updated; await writeOrders(orders);
       return res.status(200).json({ order: updated });
