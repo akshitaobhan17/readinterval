@@ -35,7 +35,9 @@ module.exports=async function(req,res){
   }
   await sendEmail({to:o.email,subject,html,text});
   const now=new Date().toISOString();
-  if(emailType==="shipped"){orders[idx]={...o,status:"Shipped",shippedAt:o.shippedAt||now,shippingEmailSentAt:now};}\n  else if(emailType==="delivered"){orders[idx]={...o,status:"Delivered",deliveredAt:o.deliveredAt||now,deliveryEmailSentAt:now};}\n  else {orders[idx]={...o,giftEmailSentAt:now};}
+  if(emailType==="shipped"){orders[idx]={...o,status:"Shipped",shippedAt:o.shippedAt||now,shippingEmailSentAt:now};}
+  else if(emailType==="delivered"){orders[idx]={...o,status:"Delivered",deliveredAt:o.deliveredAt||now,deliveryEmailSentAt:now};}
+  else {orders[idx]={...o,giftEmailSentAt:now};}
   const {put}=require("@vercel/blob");
   await put(PATH,JSON.stringify(orders,null,2),{access:"private",addRandomSuffix:false,allowOverwrite:true,contentType:"application/json"});
   return res.status(200).json({sent:true});
