@@ -320,3 +320,64 @@ footer{padding-bottom:clamp(2rem,6vw,3rem)}
 .foot a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .said{font-family:var(--body);font-weight:600;margin-top:1rem;min-height:1.4em}
 .note{font-size:.82rem;margin-top:1rem;opacity:.85;max-width:42ch}
+
+/* October preview design layer */
+.october-preview{font-family:'DM Sans',system-ui,sans-serif;background:#f5ebdf;color:#111}
+.october-preview .navbar{font-family:'DM Sans',system-ui,sans-serif}
+.october-preview .site-header .mast-meta{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.october-preview .site-header .masthead{font-family:'Archivo Black',Impact,sans-serif;text-transform:none;line-height:.8;margin:.15rem 0 .4rem;text-align:center}
+.october-preview .site-header .masthead .the{font-size:clamp(1rem,3vw,1.8rem);text-transform:none}
+.october-preview .site-header .masthead .name{font-size:clamp(4rem,15vw,10rem);letter-spacing:-.065em}
+.october-preview .site-header .masthead.small .name{font-size:clamp(3rem,9vw,6rem)}
+.october-preview .oct-hero{padding:clamp(1rem,4vw,2.5rem) 0 3.5rem}
+.october-preview .hero-block{background:#2f6fe0;color:#f4d447;border:5px solid #111;padding:clamp(2rem,7vw,5.5rem);box-shadow:12px 12px 0 #111;overflow:hidden}
+.october-preview .hero-kicker{font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;color:#111;background:#f4d447;display:inline-block;padding:.45rem .7rem;margin-bottom:1.4rem}
+.october-preview .hero-block h1{font-family:'Bree Serif',Georgia,serif;font-size:clamp(3.3rem,9vw,8rem);line-height:.92;letter-spacing:-.035em;text-shadow:6px 6px 0 #111;margin:0;max-width:1000px}
+.october-preview .hero-copy{font-size:clamp(1rem,2vw,1.25rem);font-weight:600;max-width:48ch;margin-top:1.5rem;color:#111}
+.october-preview .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.7rem}
+.october-preview .hero-btn,.october-preview .light-btn{display:inline-block;background:#f4d447;color:#111;border:4px solid #111;padding:.9rem 1.35rem;text-decoration:none;font-weight:800;text-transform:uppercase}
+.october-preview .hero-link{color:#111;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.october-preview .hero-game{padding:0 0 clamp(3rem,7vw,5rem)}
+.october-preview .game-card{background:#c9db4b;border:5px solid #111;padding:clamp(1.4rem,4vw,3rem);box-shadow:12px 12px 0 #111}
+.october-preview .game-top{display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.october-preview .game-top #game-status{font-size:.72rem;font-weight:800;letter-spacing:.12em}
+.october-preview .display-head{font-family:'Bree Serif',Georgia,serif;font-weight:400;font-size:clamp(2.5rem,6vw,5rem);line-height:.98;letter-spacing:-.025em;color:#e23b2e;text-shadow:4px 4px 0 #111;margin:.45em 0 .35em}
+.october-preview .game-intro{font-weight:600;max-width:52ch}
+.october-preview .clue-list{display:grid;gap:.7rem;margin:1.7rem 0}
+.october-preview .game-clue{display:flex;gap:1rem;align-items:flex-start;background:#f5ebdf;border:4px solid #111;padding:1rem;text-align:left}
+.october-preview .game-clue span{font-weight:900;font-size:.8rem;min-width:2rem}
+.october-preview .game-clue p{font-weight:600;line-height:1.35;margin:0}
+.october-preview .game-clue.locked{opacity:.42;filter:grayscale(1)}
+.october-preview .game-clue.locked p::after{content:'  🔒'}
+.october-preview .guess-box{display:flex;gap:.7rem;flex-wrap:wrap}
+.october-preview .guess-box input{flex:1 1 280px;min-width:0;padding:1rem;border:4px solid #111;background:#f5ebdf;font:600 1rem 'DM Sans',sans-serif}
+.october-preview .dark-btn{border:4px solid #111;background:#111;color:#f5ebdf;padding:.9rem 1.25rem;font:800 .95rem 'DM Sans',sans-serif;text-transform:uppercase;cursor:pointer}
+.october-preview .game-message{min-height:1.5em;font-weight:800;margin-top:.8rem}
+.october-preview .game-message.solved{color:#111}
+.october-preview .game-actions{display:flex;gap:1.2rem;flex-wrap:wrap}
+.october-preview .text-btn{border:0;background:none;padding:0;color:#111;text-decoration:underline;text-underline-offset:4px;font:600 .9rem 'DM Sans',sans-serif;cursor:pointer}
+.october-preview .intro-section,.october-preview .inside-section,.october-preview .shop-section,.october-preview .note-section{padding:clamp(3rem,7vw,6rem) 0}
+.october-preview .intro-section{border-top:3px solid #111}
+.october-preview .under-link{display:inline-block;margin-top:1.3rem;color:#e23b2e;font-weight:800}
+.october-preview .inside-section{background:#111;color:#f5ebdf}
+.october-preview .inside-section .display-head{color:#f4d447;text-shadow:4px 4px 0 #e23b2e}
+.october-preview .section-heading{margin-bottom:2rem}
+.october-preview .issue-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:4px solid #f5ebdf;border-left:4px solid #f5ebdf}
+.october-preview .issue-grid article{padding:1.2rem;border-right:4px solid #f5ebdf;border-bottom:4px solid #f5ebdf;min-height:220px}
+.october-preview .issue-grid span,.october-preview .shop-number{font-size:.7rem;font-weight:900;letter-spacing:.14em}
+.october-preview .issue-grid h3{font-family:'Bree Serif',Georgia,serif;font-size:2rem;color:#e23b2e;margin:.8rem 0 .5rem}
+.october-preview .issue-grid p{font-size:.92rem}
+.october-preview .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.october-preview .shop-card{border:4px solid #111;padding:1.3rem;background:#f4d447;min-height:280px;display:flex;flex-direction:column}
+.october-preview .shop-card:nth-child(2){background:#2f6fe0;color:#f5ebdf}
+.october-preview .shop-card:nth-child(3){background:#e23b2e;color:#f5ebdf}
+.october-preview .shop-card h3{font-family:'Bree Serif',Georgia,serif;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1;margin:.7rem 0}
+.october-preview .shop-card p:not(.shop-number){font-weight:600}
+.october-preview .shop-card strong{font-family:'Archivo Black',Impact,sans-serif;font-size:2.4rem;margin-top:auto}
+.october-preview .shop-card strong small{font:700 .65rem 'DM Sans',sans-serif;text-transform:uppercase}
+.october-preview .shop-card a{color:inherit;font-weight:900;text-transform:uppercase;margin-top:.8rem}
+.october-preview .note-card{background:#e23b2e;color:#f5ebdf;border:5px solid #111;padding:clamp(1.5rem,5vw,3.5rem);box-shadow:12px 12px 0 #111}
+.october-preview .note-card .display-head{color:#f4d447;text-shadow:4px 4px 0 #111}
+.october-preview .note-card p{font-weight:600;max-width:48ch}
+@media(max-width:820px){.october-preview .issue-grid,.october-preview .shop-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.october-preview .mast-meta{font-size:.58rem!important}.october-preview .issue-grid,.october-preview .shop-grid{grid-template-columns:1fr}.october-preview .hero-block h1{font-size:clamp(2.7rem,14vw,4.5rem)}}
