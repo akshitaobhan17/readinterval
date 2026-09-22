@@ -1,10 +1,57 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The Interval — a newspaper with nothing to report</title><meta name="description" content="The Interval is a newspaper of games, puzzles and curious things. No news."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bree+Serif&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body class="october-preview">
-<nav><div class="wrap"><div class="navbar"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="buy.html">Get the paper</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
-<header class="site-header"><div class="wrap"><div class="mast-meta"><span>A newspaper with nothing to report</span><span>Made in Bombay</span></div><div class="masthead"><a href="index.html"><span class="the">The</span><span class="name">Interval</span></a></div><hr class="rule"></div></header>
-<main><section class="oct-hero"><div class="wrap"><div class="hero-block"><p class="hero-kicker">October 2026 · Issue No. 02</p><h1>The October<br>Interval is here.</h1><p class="hero-copy">Eight pages of things to play, solve, argue about and pass around. Still no news.</p><div class="hero-actions"><a class="hero-btn" href="buy.html">Get the paper</a><a class="hero-link" href="#shop">See the issues ↓</a></div></div></div></section>
-<section class="hero-game"><div class="wrap"><div class="game-card"><div class="game-top"><p class="eyebrow">A little game from The Interval</p><span id="game-status">CLUE 1 / 3</span></div><h2 class="display-head">Guess the film.<br>Before we make it obvious.</h2><p class="game-intro">Three increasingly ridiculous clues. One Bollywood film. Type your guess whenever you think you've got it.</p><div class="clue-list"><div class="game-clue active"><span>01</span><p>Three friends go on a trip because apparently talking about your feelings at home wasn't an option.</p></div><div class="game-clue locked"><span>02</span><p>There is a bachelor party, a Spanish road trip and a great deal of emotional baggage.</p></div><div class="game-clue locked"><span>03</span><p>One of them refuses to come out of the water. Another is terrified of heights. You know the one.</p></div></div><form class="guess-box" id="film-game"><input id="film-answer" type="text" autocomplete="off" placeholder="Name the film"><button class="dark-btn" type="submit">Lock it in</button></form><p class="game-message" id="film-message" aria-live="polite"></p><div class="game-actions"><button class="text-btn" id="next-clue" type="button">Give me another clue →</button><button class="text-btn" id="show-answer" type="button">I give up. Tell me.</button></div></div></div></section>
-<section class="intro-section"><div class="wrap narrow"><p class="eyebrow">The idea</p><h2 class="display-head">We forgot how to be bored.</h2><p class="lede">Every spare minute became another scroll, another notification, another thing asking for our attention.</p><p>So we made the paper we wanted to find on a coffee table, in a bookshop or tucked into a café corner. Games, puzzles, odd little facts and absolutely nothing that needs updating.</p><a class="under-link" href="about.html">More about The Interval →</a></div></section>
-<section class="inside-section"><div class="wrap"><div class="section-heading"><p class="eyebrow">Inside Issue 02</p><h2 class="display-head">Things to play.<br>Things to argue about.</h2></div><div class="issue-grid"><article><span>01</span><h3>Words</h3><p>Cross wires, clues, loops and the sort of wordplay that makes you accuse the paper of cheating.</p></article><article><span>02</span><h3>Pictures</h3><p>Look closely. Guess badly. Change your mind. Repeat.</p></article><article><span>03</span><h3>Films</h3><p>Bollywood, but described by someone who clearly wasn't paying attention.</p></article><article><span>04</span><h3>Two can play</h3><p>One page that gets better when someone is sitting opposite you.</p></article></div></div></section>
-<section id="shop" class="shop-section"><div class="wrap"><p class="eyebrow">Get the paper</p><h2 class="display-head">Pick one.<br>Or get the two.</h2><div class="shop-grid"><article class="shop-card"><p class="shop-number">ISSUE 01</p><h3>September 2026</h3><p>Eight pages of games, puzzles and no news.</p><strong>₹449</strong><a href="buy.html#issue-01">Get Issue 01 →</a></article><article class="shop-card"><p class="shop-number">ISSUE 02 · NEW</p><h3>October 2026</h3><p>The newest paper. Same rules: no news, lots to do.</p><strong>₹449</strong><a href="buy.html#issue-02">Get Issue 02 →</a></article><article class="shop-card"><p class="shop-number">THE TWO-ISSUE SET</p><h3>September + October</h3><p>Two papers. One slightly better excuse to disappear for an afternoon.</p><strong>₹799 <small>save ₹99</small></strong><a href="buy.html#the-set">Get both →</a></article></div></div></section>
-<section class="note-section"><div class="wrap"><div class="note-card"><p class="eyebrow">The Interval</p><h2 class="display-head">No news.<br>On purpose.</h2><p>Printed in Bombay. Folded once. Made to be picked up, put down, passed around and found again.</p><a class="light-btn" href="about.html">What is this? →</a></div></div></section></main>
-<footer><div class="wrap"><hr class="rule"><div class="foot"><span>readinterval.in</span><a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a><span>Bombay</span></div></div></footer><script src="site.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Interval — a little paper for your in-between time</title>
+<meta name="description" content="The Interval is a monthly paper of games, puzzles, stories and curious things.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Abril+Fatface&family=Playfair+Display:wght@400;500;600&family=Bree+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="october-preview">
+<nav><div class="wrap"><div class="navbar"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="buy.html">Get your Interval</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
+<header><div class="wrap">
+<div class="ear"><span>October 2026</span><span class="mid">A little paper for your in-between time</span><span>Issue No. 02</span></div>
+<div class="masthead"><a href="index.html"><span class="the">The</span><span class="name">Int<span class="kick">e</span>rval</span></a></div>
+<hr class="rule">
+<div class="strap"><span>Games</span><span class="dot"></span><span>Stories</span><span class="dot"></span><span>Things to do</span></div>
+<hr class="rule">
+</div></header>
+
+<main>
+<section class="oct-hero"><div class="wrap"><div class="hero-block">
+<p class="hero-kicker">October 2026 · Issue No. 02</p>
+<h1>The October<br>Interval is here.</h1>
+<p class="hero-copy">Eight pages of things to play, solve, argue about and pass around. Still no news.</p>
+<div class="hero-actions"><a class="hero-btn" href="buy.html">Get your Interval</a></div>
+</div></div></section>
+
+<section class="hero-game"><div class="wrap"><div class="game-card">
+<div class="game-top"><p class="eyebrow">A little game from The Interval</p><span id="game-status">CLUE 1 / 3</span></div>
+<h2 class="display-head">Guess the film.<br>Before we make it obvious.</h2>
+<p class="game-intro">Three increasingly ridiculous clues. One Bollywood film. Type your guess whenever you think you've got it.</p>
+<div class="clue-list">
+<div class="game-clue active"><span>01</span><p>Three friends go on a trip because apparently talking about your feelings at home wasn't an option.</p></div>
+<div class="game-clue locked"><span>02</span><p>There is a bachelor party, a Spanish road trip and a great deal of emotional baggage.</p></div>
+<div class="game-clue locked"><span>03</span><p>One of them refuses to come out of the water. Another is terrified of heights. You know the one.</p></div>
+</div>
+<form class="guess-box" id="film-game"><input id="film-answer" type="text" autocomplete="off" placeholder="Name the film"><button class="dark-btn" type="submit">Lock it in</button></form>
+<p class="game-message" id="film-message" aria-live="polite"></p>
+<div class="game-actions"><button class="text-btn" id="next-clue" type="button">Give me another clue →</button><button class="text-btn" id="show-answer" type="button">I give up. Tell me.</button></div>
+</div></div></section>
+
+<section class="inside-section"><div class="wrap">
+<div class="section-heading"><p class="eyebrow">Inside The Interval</p><h2 class="display-head">A little bit of<br>everything.</h2></div>
+<div class="issue-grid">
+<article><span>01</span><h3>Words</h3><p>Wordplay, puzzles and things that make you stop, stare and try again.</p></article>
+<article><span>02</span><h3>Films</h3><p>Bollywood, movie moments and the kind of clues you immediately want to argue about.</p></article>
+<article><span>03</span><h3>Food</h3><p>Things we eat, things we call them and the occasional question nobody should be taking this seriously.</p></article>
+<article><span>04</span><h3>Culture</h3><p>Little pieces of India, odd facts, familiar things and things you didn't know you knew.</p></article>
+</div></div></section>
+
+<section class="creator-tease"><div class="wrap narrow"><p class="eyebrow">Why it exists</p><h2 class="display-head">Something to pick up<br>when you put your phone down.</h2><p class="lede">Not a productivity exercise. Not homework. Just a good little reason to spend some time somewhere else.</p><a class="under-link" href="about.html">Why I made it →</a></div></section>
+</main>
+
+<footer><div class="wrap"><hr class="rule"><div class="foot"><span>readinterval.in</span><a href="https://instagram.com/readinterval" rel="noopener">@readinterval</a><span>Bombay</span></div></div></footer>
+<script src="site.js"></script>
+</body></html>
