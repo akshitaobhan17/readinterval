@@ -500,27 +500,14 @@ font-family:'Roboto Slab',Georgia,serif;font-weight:900}
   font-size:1rem;
   line-height:1.45;
 }
-/* Final masthead correction: the E falls down-left, away from the R. */
-.october-preview .masthead .name{position:relative;display:inline-block}
-.october-preview .masthead .name .kick{
-  display:inline-block;
-  position:relative;
-  z-index:2;
-  transform-origin:50% 50%;
-}
+.october-preview .masthead .kick{transform:translate(-.10em,.38em) rotate(-14deg)}
 @media (prefers-reduced-motion:no-preference){
-  .october-preview .masthead .name .kick{
-    animation:interval-e-fall-left 1.05s .45s both;
-  }
-  @keyframes interval-e-fall-left{
-    0%{transform:translate(0,0) rotate(0deg)}
-    18%{transform:translate(-.03em,.08em) rotate(-2deg)}
-    48%{transform:translate(-.48em,.58em) rotate(-14deg)}
-    68%{transform:translate(-.62em,.74em) rotate(-11deg)}
-    84%{transform:translate(-.55em,.67em) rotate(-13deg)}
-    100%{transform:translate(-.58em,.70em) rotate(-13deg)}
-  }
-}
-@media (prefers-reduced-motion:reduce){
-  .october-preview .masthead .name .kick{transform:translate(-.58em,.70em) rotate(-13deg)}
-}
+.october-preview .masthead .kick{animation:interval-e-fall 1.05s .45s both}
+@keyframes interval-e-fall{
+0%{transform:translate(0,0) rotate(0)}
+10%{transform:translate(-.01em,-.02em) rotate(-3deg)}
+42%{transform:translate(-.10em,.42em) rotate(-17deg)}
+58%{transform:translate(-.14em,.30em) rotate(-12deg)}
+76%{transform:translate(-.10em,.40em) rotate(-15deg)}
+100%{transform:translate(-.10em,.38em) rotate(-14deg)}
+}}
