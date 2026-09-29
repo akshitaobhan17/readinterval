@@ -347,7 +347,7 @@ footer{padding-bottom:clamp(2rem,6vw,3rem)}
 .october-preview .game-clue{display:flex;gap:1rem;align-items:flex-start;background:#f5ebdf;border:4px solid #111;padding:1rem;text-align:left}
 .october-preview .game-clue span{font-weight:900;font-size:.8rem;min-width:2rem}
 .october-preview .game-clue p{font-weight:600;line-height:1.35;margin:0}
-.october-preview .game-clue.locked{opacity:.42;filter:grayscale(1)}
+.october-preview .game-clue.locked{display:none}
 .october-preview .game-clue.locked p::after{content:'  🔒'}
 .october-preview .guess-box{display:flex;gap:.7rem;flex-wrap:wrap}
 .october-preview .guess-box input{flex:1 1 280px;min-width:0;padding:1rem;border:4px solid #111;background:#f5ebdf;font:600 1rem 'DM Sans',sans-serif}
