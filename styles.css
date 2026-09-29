@@ -566,27 +566,29 @@ font-family:'Roboto Slab',Georgia,serif;font-weight:900}
 }
 
 
-/* October Issue 02 — butter-yellow framed cover, matching the September presentation */
+
+/* October Issue 02 — frame within a frame */
 .october-preview .purchase-card.current .cover-frame.october-illustrated{
   background:var(--mustard);
-  border-bottom:5px solid var(--ink);
+  border:5px solid var(--ink);
   padding:1.15rem;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
 }
 .october-preview .purchase-card.current .october-cover-art{
   width:78%;
   height:92%;
-  aspect-ratio:auto;
   background:var(--cream);
   border:4px solid var(--ink);
   box-shadow:8px 8px 0 rgba(17,17,17,.18);
+  padding:.35rem;
   transform:rotate(2deg);
-  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
 }
 .october-preview .purchase-card.current .october-cover-art img{
   width:100%;
@@ -598,7 +600,7 @@ font-family:'Roboto Slab',Georgia,serif;font-weight:900}
 .october-preview .set-covers .mini-cover.october-illustrated{
   background:var(--mustard);
   border:4px solid var(--ink);
-  padding:.55rem;
+  padding:.6rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -606,12 +608,13 @@ font-family:'Roboto Slab',Georgia,serif;font-weight:900}
 }
 .october-preview .set-covers .mini-cover.october-illustrated img{
   width:86%;
-  height:94%;
+  height:92%;
   object-fit:contain;
   object-position:center;
   background:var(--cream);
   border:3px solid var(--ink);
   box-shadow:5px 5px 0 rgba(17,17,17,.18);
   transform:rotate(2deg);
+  padding:.2rem;
   display:block;
 }
