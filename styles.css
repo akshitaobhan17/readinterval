@@ -536,3 +536,5 @@ h2.head{
 .stack-card:nth-child(2){top:calc(clamp(62px,9vh,92px) + 12px)}.stack-card:nth-child(3){top:calc(clamp(62px,9vh,92px) + 24px)}.stack-card:nth-child(4){top:calc(clamp(62px,9vh,92px) + 36px)}
 @media(max-width:600px){.interval-stack{padding:1rem .3rem 12vh}.stack-card{min-height:275px;margin-bottom:38vh;padding:1rem}.stack-card-main{grid-template-columns:100px 1fr;gap:.65rem}.stack-art{height:135px}.stack-copy h3{font-size:clamp(1.7rem,7vw,2.2rem)}.stack-copy p{font-size:.8rem}.stack-card:nth-child(1){top:62px}.stack-card:nth-child(2){top:72px}.stack-card:nth-child(3){top:82px}.stack-card:nth-child(4){top:92px;margin-bottom:0}}
 @media(prefers-reduced-motion:reduce){.stack-card{position:relative;top:auto!important;margin-bottom:1.5rem}}
+
+.stack-art img{display:block;width:100%;max-width:220px;height:100%;object-fit:contain;}
