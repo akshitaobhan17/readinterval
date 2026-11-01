@@ -554,3 +554,12 @@ h2.head{
  .stack-card:nth-child(4){top:98px;margin-bottom:0}
 }
 @media(prefers-reduced-motion:reduce){.stack-card{position:sticky;top:62px!important;margin-bottom:10vh}}
+/* Shop navigation dropdown */
+.nav-shop-menu{position:relative;display:flex;align-items:center}
+.nav-shop-menu>a{color:var(--ink);text-decoration:none;padding-bottom:3px;border-bottom:3px solid transparent}
+.nav-shop-menu>a:hover,.nav-shop-menu>a[aria-current="page"]{border-bottom-color:var(--red)}
+.nav-shop-dropdown{display:none;position:absolute;z-index:30;top:100%;left:50%;transform:translateX(-50%);min-width:205px;padding:.55rem;background:var(--cream);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);text-transform:none;letter-spacing:0;font-size:.78rem}
+.nav-shop-dropdown a{display:block;padding:.65rem .7rem;border:0!important;white-space:nowrap;font-weight:700}
+.nav-shop-dropdown a:hover{background:var(--mustard)}
+.nav-shop-menu:hover .nav-shop-dropdown,.nav-shop-menu:focus-within .nav-shop-dropdown{display:block}
+@media(max-width:560px){.nav-shop-dropdown{left:auto;right:0;transform:none;min-width:190px}}
