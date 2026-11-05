@@ -45,40 +45,49 @@
 .product-cover-final{max-width:620px;width:100%;margin:0 auto;background:transparent;border:0;box-shadow:none;position:relative;overflow:visible}
 .cover-carousel{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:.25rem .7rem 1rem 0}
 .cover-carousel::-webkit-scrollbar{display:none}
-.cover-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;background:#2865e8;border:5px solid #111;box-shadow:10px 10px 0 #111;padding:clamp(.5rem,1.4vw,.9rem);display:flex;align-items:center;justify-content:center}
+.cover-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;background:#2865e8;border:5px solid #111;box-shadow:10px 10px 0 #111;padding:clamp(.5rem,1.4vw,.9rem);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
 .cover-slide img{display:block;width:100%;height:100%;object-fit:contain;box-shadow:none;background:transparent}
 .cover-slide:nth-child(2){background:#f2d64b}.cover-slide:nth-child(3){background:#e23b2e}.cover-slide:nth-child(4){background:#c9db4b}.cover-slide:nth-child(5){background:#7fb6e0}
-/* soft pigment wash: cloudy, painted paper, no speckles */
-.cover-slide::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.24;mix-blend-mode:soft-light;background-image:radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.18),transparent 42%),radial-gradient(ellipse at 78% 68%,rgba(15,20,30,.10),transparent 48%),radial-gradient(ellipse at 48% 92%,rgba(255,255,255,.10),transparent 36%),linear-gradient(118deg,rgba(255,255,255,.035),rgba(0,0,0,.035),rgba(255,255,255,.025);background-size:100% 100%}
-.cover-slide img{position:relative;z-index:1}
+.cover-slide::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.24;mix-blend-mode:soft-light;background-image:radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.18),transparent 42%),radial-gradient(ellipse at 78% 68%,rgba(15,20,30,.10),transparent 48%),radial-gradient(ellipse at 48% 92%,rgba(255,255,255,.10),transparent 36%);background-size:100% 100%}
+.cover-slide img,.cover-slide .image-slot{position:relative;z-index:1}
 .cover-slide .image-slot{font:800 .7rem 'Poppins',sans-serif;letter-spacing:.12em;color:#111;border:2px dashed rgba(17,17,17,.45);padding:.6rem 1rem}
-.cover-carousel-dots{display:flex;gap:.45rem;justify-content:center;margin:.7rem 0 0}
-.cover-carousel-dots span{width:7px;height:7px;border-radius:50%;background:#111;opacity:.25}
-.cover-carousel-dots span:first-child{opacity:1}
+.cover-carousel-dots{display:flex;gap:.5rem;justify-content:center;align-items:center;margin:.7rem 0 0}
+.cover-carousel-dots button{width:8px;height:8px;border:0;border-radius:50%;padding:0;background:#111;opacity:.25;cursor:pointer}
+.cover-carousel-dots button[aria-current="true"]{opacity:1;transform:scale(1.25)}
+.cover-nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:.2rem .25rem 0}
+.cover-nav button{border:2px solid #111;background:#fff;color:#111;border-radius:50%;width:34px;height:34px;font-size:1.1rem;line-height:1;cursor:pointer}
 .product-copy-final{text-align:center;max-width:820px;margin:0 auto}
 .product-copy-final .display-head{margin:.25em 0 .2em}
 .product-copy-final .product-meta{justify-content:center;margin:.8rem 0 1.2rem}
 .product-copy-final .product-buy-jump{display:inline-block}
-@media(max-width:680px){.product-lead-final{padding:.8rem 0 1.5rem}.product-cover-final{padding:.35rem;border-width:4px;box-shadow:7px 7px 0 #111}.product-cover-final img{max-height:72vh}.product-copy-final .display-head{font-size:clamp(2.8rem,13vw,4.6rem)}}
-/* Mobile carousel sizing: prevent slide borders/padding from exceeding viewport */
-.cover-carousel,.cover-slide{box-sizing:border-box}
-.cover-carousel{width:100%;min-width:0;max-width:100%;overscroll-behavior-x:contain}
-.cover-slide{min-width:0;flex-basis:100%;max-width:100%}
-.cover-slide img{min-width:0;max-width:100%}
+@media(min-width:900px){
+ .product-lead-final{grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);align-items:center;gap:3rem}
+ .product-cover-final{max-width:none}
+ .cover-carousel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;overflow:visible;padding:.25rem .7rem 1rem 0;scroll-snap-type:none}
+ .cover-slide{aspect-ratio:4/5;min-width:0;width:100%;padding:.5rem;border-width:4px;box-shadow:7px 7px 0 #111}
+ .cover-nav{display:none}
+ .cover-carousel-dots{display:none}
+}
+@media(max-width:899px){
+ .product-lead-final{grid-template-columns:1fr}
+ .product-cover-final{max-width:620px}
+ .cover-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+ .cover-slide{flex:0 0 100%;width:100%;max-width:100%;aspect-ratio:4/5}
+}
 @media(max-width:680px){
- .product-lead-final,.product-cover-final{min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+ .product-lead-final{padding:.8rem 0 1.5rem}
  .product-cover-final{padding:0;border:0;box-shadow:none;overflow:hidden}
  .cover-carousel{padding:.25rem .7rem 1rem 0;gap:1.1rem}
- .cover-slide{flex:0 0 100%;width:100%;aspect-ratio:4/5;border-width:4px;box-shadow:7px 7px 0 #111;padding:.5rem}
+ .cover-slide{flex:0 0 100%;border-width:4px;box-shadow:7px 7px 0 #111;padding:.5rem}
  .cover-slide img{max-height:72vh}
-}
-</style></head>
+ .product-copy-final .display-head{font-size:clamp(2.8rem,13vw,4.6rem)}
+}</style></head>
 <body class="october-preview">
 <nav><div class="wrap"><div class="navbar"><a href="index.html">Home</a><a href="about.html">About</a><a href="buy.html" aria-current="page">Get your Interval</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
 <header><div class="wrap"><div class="masthead small"><a href="index.html"><span class="the">The</span><span class="name">Int<span class="kick">e</span>rval</span></a></div><hr class="rule"></div></header>
 <main>
 <section class="product-intro"><div class="wrap"><div class="product-topline"><span>NOVEMBER 2026</span><span>ISSUE NO. 03</span></div><div class="product-lead product-lead-final">
-<div class="product-cover product-cover-final"><div class="cover-carousel" aria-label="Swipe through The Interval product images"><div class="cover-slide"><img src="november-issue-03-cover.webp" alt="The Interval November 2026 Issue 03 cover"></div><div class="cover-slide"><span class="image-slot">IMAGE 02 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 03 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 04 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 05 · ADD ARTWORK</span></div></div><div class="cover-carousel-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
+<div class="product-cover product-cover-final"><div class="cover-carousel" aria-label="Swipe through The Interval product images"><div class="cover-slide"><img src="november-issue-03-cover.webp" alt="The Interval November 2026 Issue 03 cover"></div><div class="cover-slide"><span class="image-slot">IMAGE 02 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 03 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 04 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 05 · ADD ARTWORK</span></div></div><div class="cover-nav" aria-label="Carousel controls"><button type="button" class="cover-prev" aria-label="Previous image">‹</button><button type="button" class="cover-next" aria-label="Next image">›</button></div><div class="cover-carousel-dots" aria-label="Choose image"></div></div>
 <div class="product-copy product-copy-final"><p class="eyebrow">The latest issue · November 2026 · Issue 03</p><h1 class="display-head">The November<br>Interval.</h1><div class="product-meta"><span>MADE IN BOMBAY</span><span>SHIPPING INCLUDED</span></div><a class="product-buy-jump" href="#choose-edition">Choose your edition ↓</a></div>
 </div></div></section>
 
@@ -104,4 +113,9 @@ editionChoice.addEventListener("change",update);document.getElementById("continu
 const track=document.getElementById("issue-gallery"),slides=[...track.querySelectorAll(".gallery-slide")];let galleryIndex=0;function showSlide(n){galleryIndex=(n+slides.length)%slides.length;slides[galleryIndex].scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});document.getElementById("gallery-count").textContent=String(galleryIndex+1).padStart(2,"0")+" / "+String(slides.length).padStart(2,"0")}document.getElementById("gallery-prev").addEventListener("click",()=>showSlide(galleryIndex-1));document.getElementById("gallery-next").addEventListener("click",()=>showSlide(galleryIndex+1));track.addEventListener("scroll",()=>{const w=slides[0].getBoundingClientRect().width+16;const i=Math.round(track.scrollLeft/w);if(i!==galleryIndex){galleryIndex=Math.max(0,Math.min(slides.length-1,i));document.getElementById("gallery-count").textContent=String(galleryIndex+1).padStart(2,"0")+" / "+String(slides.length).padStart(2,"0")}},{passive:true});
 async function startPayment(){const c=customer(),x=p();if(!valid(c)){message.textContent="Please complete your name, email, phone and full delivery address, including a 6-digit PIN code.";return}payButton.disabled=true;message.textContent="Preparing secure checkout…";try{const rr=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(c)}),o=await rr.json();if(!rr.ok)throw new Error(o.error||"Could not create the order.");const kr=await fetch("/api/razorpay-config"),k=await kr.json();if(!kr.ok||!k.key_id)throw new Error("Razorpay is not configured yet.");const options={key:k.key_id,amount:o.amount,currency:o.currency,name:"The Interval",description:x.label,order_id:o.order_id,prefill:{name:c.name,email:c.email,contact:c.phone},notes:{product:x.label},theme:{color:"#111111"},modal:{ondismiss:()=>{payButton.disabled=false;message.textContent="Checkout closed. Your order has not been placed."}},handler:async response=>{message.textContent="Confirming your payment…";try{const vr=await fetch("/api/verify-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(response)}),vv=await vr.json();if(!vr.ok||!vv.verified)throw new Error(vv.error||"Payment could not be verified.");form.hidden=true;success.style.display="block";paymentId.textContent="Payment ID: "+response.razorpay_payment_id}catch(e){payButton.disabled=false;message.textContent=e.message||"Payment verification failed."}}};const checkout=new Razorpay(options);checkout.on("payment.failed",response=>{payButton.disabled=false;message.textContent=(response.error&&response.error.description)||"Payment failed. Please try again."});checkout.open()}catch(e){payButton.disabled=false;message.textContent=e.message||"Something went wrong. Please try again."}}
 payButton.addEventListener("click",startPayment);
+</script><script>
+(()=>{const track=document.querySelector('.cover-carousel');if(!track)return;const slides=[...track.querySelectorAll('.cover-slide')],dots=document.querySelector('.cover-carousel-dots'),prev=document.querySelector('.cover-prev'),next=document.querySelector('.cover-next');let active=0;
+slides.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to image '+(i+1));b.addEventListener('click',()=>go(i));dots.appendChild(b)});
+const bs=[...dots.querySelectorAll('button')];function go(i){active=(i+slides.length)%slides.length;slides[active].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});bs.forEach((b,j)=>b.setAttribute('aria-current',j===active?'true':'false'))}
+prev?.addEventListener('click',()=>go(active-1));next?.addEventListener('click',()=>go(active+1));track.addEventListener('scroll',()=>{if(innerWidth>=900)return;let center=track.scrollLeft+track.clientWidth/2;let best=0,dist=Infinity;slides.forEach((s,i)=>{let d=Math.abs(s.offsetLeft+s.offsetWidth/2-center);if(d<dist){dist=d;best=i}});active=best;bs.forEach((b,j)=>b.setAttribute('aria-current',j===active?'true':'false'))},{passive:true});go(0)})();
 </script></body></html>
