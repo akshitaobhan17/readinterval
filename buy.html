@@ -48,8 +48,8 @@
 .cover-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;background:#2865e8;border:5px solid #111;box-shadow:10px 10px 0 #111;padding:clamp(.5rem,1.4vw,.9rem);display:flex;align-items:center;justify-content:center}
 .cover-slide img{display:block;width:100%;height:100%;object-fit:contain;box-shadow:none;background:transparent}
 .cover-slide:nth-child(2){background:#f2d64b}.cover-slide:nth-child(3){background:#e23b2e}.cover-slide:nth-child(4){background:#c9db4b}.cover-slide:nth-child(5){background:#7fb6e0}
-/* restrained ink/paper grain, without visible speckles */
-.cover-slide::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.075;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.42'/%3E%3C/svg%3E");background-size:180px 180px}
+/* soft pigment wash: cloudy, painted paper, no speckles */
+.cover-slide::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.24;mix-blend-mode:soft-light;background-image:radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.18),transparent 42%),radial-gradient(ellipse at 78% 68%,rgba(15,20,30,.10),transparent 48%),radial-gradient(ellipse at 48% 92%,rgba(255,255,255,.10),transparent 36%),linear-gradient(118deg,rgba(255,255,255,.035),rgba(0,0,0,.035),rgba(255,255,255,.025);background-size:100% 100%}
 .cover-slide img{position:relative;z-index:1}
 .cover-slide .image-slot{font:800 .7rem 'Poppins',sans-serif;letter-spacing:.12em;color:#111;border:2px dashed rgba(17,17,17,.45);padding:.6rem 1rem}
 .cover-carousel-dots{display:flex;gap:.45rem;justify-content:center;margin:.7rem 0 0}
