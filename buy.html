@@ -57,6 +57,18 @@
 .product-copy-final .product-meta{justify-content:center;margin:.8rem 0 1.2rem}
 .product-copy-final .product-buy-jump{display:inline-block}
 @media(max-width:680px){.product-lead-final{padding:.8rem 0 1.5rem}.product-cover-final{padding:.35rem;border-width:4px;box-shadow:7px 7px 0 #111}.product-cover-final img{max-height:72vh}.product-copy-final .display-head{font-size:clamp(2.8rem,13vw,4.6rem)}}
+/* Mobile carousel sizing: prevent slide borders/padding from exceeding viewport */
+.cover-carousel,.cover-slide{box-sizing:border-box}
+.cover-carousel{width:100%;min-width:0;max-width:100%;overscroll-behavior-x:contain}
+.cover-slide{min-width:0;flex-basis:100%;max-width:100%}
+.cover-slide img{min-width:0;max-width:100%}
+@media(max-width:680px){
+ .product-lead-final,.product-cover-final{min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+ .product-cover-final{padding:0;border:0;box-shadow:none;overflow:hidden}
+ .cover-carousel{padding:.25rem .7rem 1rem 0;gap:1.1rem}
+ .cover-slide{flex:0 0 100%;width:100%;aspect-ratio:4/5;border-width:4px;box-shadow:7px 7px 0 #111;padding:.5rem}
+ .cover-slide img{max-height:72vh}
+}
 </style></head>
 <body class="october-preview">
 <nav><div class="wrap"><div class="navbar"><a href="index.html">Home</a><a href="about.html">About</a><a href="buy.html" aria-current="page">Get your Interval</a><a href="https://instagram.com/readinterval" rel="noopener">Instagram</a></div></div></nav>
