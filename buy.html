@@ -42,8 +42,16 @@
 </style>
 <style>
 .product-lead-final{grid-template-columns:1fr;gap:1.5rem;align-items:start;padding:1.2rem 0 2rem}
-.product-cover-final{max-width:620px;width:100%;padding:clamp(.45rem,1.2vw,.8rem);margin:0 auto;background-color:#2865e8;background-image:radial-gradient(rgba(255,255,255,.15) .7px,transparent .7px),linear-gradient(135deg,rgba(255,255,255,.06),rgba(0,0,0,.04));background-size:5px 5px,100% 100%;border:5px solid #111;box-shadow:10px 10px 0 #111;position:relative}
-.product-cover-final img{width:100%;max-height:78vh;object-fit:contain;box-shadow:none;display:block;background:transparent}
+.product-cover-final{max-width:620px;width:100%;margin:0 auto;background:transparent;border:0;box-shadow:none;position:relative;overflow:visible}
+.cover-carousel{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:.25rem .7rem 1rem 0}
+.cover-carousel::-webkit-scrollbar{display:none}
+.cover-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;background:#2865e8;border:5px solid #111;box-shadow:10px 10px 0 #111;padding:clamp(.5rem,1.4vw,.9rem);display:flex;align-items:center;justify-content:center}
+.cover-slide img{display:block;width:100%;height:100%;object-fit:contain;box-shadow:none;background:transparent}
+.cover-slide:nth-child(2){background:#f2d64b}.cover-slide:nth-child(3){background:#e23b2e}.cover-slide:nth-child(4){background:#c9db4b}.cover-slide:nth-child(5){background:#7fb6e0}
+.cover-slide .image-slot{font:800 .7rem 'Poppins',sans-serif;letter-spacing:.12em;color:#111;border:2px dashed rgba(17,17,17,.45);padding:.6rem 1rem}
+.cover-carousel-dots{display:flex;gap:.45rem;justify-content:center;margin:.7rem 0 0}
+.cover-carousel-dots span{width:7px;height:7px;border-radius:50%;background:#111;opacity:.25}
+.cover-carousel-dots span:first-child{opacity:1}
 .product-copy-final{text-align:center;max-width:820px;margin:0 auto}
 .product-copy-final .display-head{margin:.25em 0 .2em}
 .product-copy-final .product-meta{justify-content:center;margin:.8rem 0 1.2rem}
@@ -55,7 +63,7 @@
 <header><div class="wrap"><div class="masthead small"><a href="index.html"><span class="the">The</span><span class="name">Int<span class="kick">e</span>rval</span></a></div><hr class="rule"></div></header>
 <main>
 <section class="product-intro"><div class="wrap"><div class="product-topline"><span>NOVEMBER 2026</span><span>ISSUE NO. 03</span></div><div class="product-lead product-lead-final">
-<div class="product-cover product-cover-final"><img src="november-issue-03-cover.webp" alt="The Interval November 2026 Issue 03 cover"></div>
+<div class="product-cover product-cover-final"><div class="cover-carousel" aria-label="Swipe through The Interval product images"><div class="cover-slide"><img src="november-issue-03-cover.webp" alt="The Interval November 2026 Issue 03 cover"></div><div class="cover-slide"><span class="image-slot">IMAGE 02 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 03 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 04 · ADD ARTWORK</span></div><div class="cover-slide"><span class="image-slot">IMAGE 05 · ADD ARTWORK</span></div></div><div class="cover-carousel-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
 <div class="product-copy product-copy-final"><p class="eyebrow">The latest issue · November 2026 · Issue 03</p><h1 class="display-head">The November<br>Interval.</h1><div class="product-meta"><span>MADE IN BOMBAY</span><span>SHIPPING INCLUDED</span></div><a class="product-buy-jump" href="#choose-edition">Choose your edition ↓</a></div>
 </div></div></section>
 
