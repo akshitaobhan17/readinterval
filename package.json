@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "test": "node --test api/_lib/*.test.js"
+  },
   "dependencies": {
     "razorpay": "^2.9.6",
     "@vercel/blob": "^2.6.1",
