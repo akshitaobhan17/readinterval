@@ -21,7 +21,7 @@ module.exports=async function handler(req,res){
   const existing=await db`SELECT id,razorpay_subscription_id,status FROM subscriptions WHERE checkout_idempotency_key=${key} LIMIT 1`;
   if(existing.length)return json(res,200,{subscriptionId:existing[0].razorpay_subscription_id,localId:existing[0].id,status:existing[0].status,reused:true});
   // Create provider subscription first; compensate by cancelling if local transaction fails.
-  const provider=await rz.subscriptions.create({plan_id:planId,quantity:1,total_count:plan.interval,customer_notify:1,notes:{interval_customer_email:email,interval_plan_code:b.planCode,interval_checkout_key:key}});
+  const provider=await rz.subscriptions.create({plan_id:planId,quantity:1,total_count:plan.cadence==='monthly'?12:plan.cadence==='quarterly'?4:1,customer_notify:1,notes:{interval_customer_email:email,interval_plan_code:b.planCode,interval_checkout_key:key}});
   if(!provider?.id)throw new Error("Razorpay did not return a subscription ID");
   try{
    const rows=await db`WITH c AS (
