@@ -2,7 +2,7 @@
 **Status:** Preview branch design baseline; not production implementation or launch approval.
 
 ## 0. Catalogue
-Regular confirmed: Monthly ₹449/1 issue; Quarterly ₹1,200/3 issues (₹400 each); Annual ₹4,500/12 issues (₹375 each). Pocket monthly/quarterly/annual exists as product variants but price is TBD: do not enable Pocket checkout until price and billing totals are confirmed. Pocket uses same clue/content source but fewer games and smaller physical format. Money is integer paise; display per-issue effective price and recurring charge/frequency.
+Regular confirmed: Monthly ₹449/1 issue; Quarterly ₹1,200/3 issues (₹400 each); Annual ₹4,500/12 issues (₹375 each). Pocket confirmed: Monthly ₹299/issue (₹299 monthly); Quarterly ₹266/issue (₹798 every 3 months); Annual ₹250/issue (₹3,000 every 12 months). Pocket uses same clue/content source but fewer games and smaller physical format. Money is integer paise; display per-issue effective price and recurring charge/frequency.
 
 ## 1. System boundaries
 - Razorpay: mandate, provider subscription state, recurring billing/invoices/payments/retries.
@@ -52,7 +52,7 @@ Proposed rules pending user decisions:
 - Pause/resume rules must be defined before portal enablement.
 
 ## 5. API surface
-Public: GET subscription plans (Pocket omitted while TBD); POST checkout (idempotent); authenticated customer portal/detail/payment/entitlement; POST cancel/change-plan/update-address/recover with ownership checks and audit.
+Public: GET subscription plans (Pocket included at confirmed prices); POST checkout (idempotent); authenticated customer portal/detail/payment/entitlement; POST cancel/change-plan/update-address/recover with ownership checks and audit.
 Provider: POST subscription webhook (raw signature, durable inbox, idempotent processor).
 Admin: subscriber search/detail; lifecycle/payment/reconciliation; issues/entitlement generation; dispatch batch/export; tracking/shipping/replacement/return; manual/gift; CSV; metrics/audit.
 Jobs: webhook processor, outbox sender, provider reconciliation, renewal/failure alerts, entitlement run and dispatch export; each needs locks/idempotency/logging.
@@ -82,9 +82,9 @@ Reliability: backup/restore, migration rollback, replay, outbox retry, reconcili
 Release gates: green unit/integration tests; Razorpay Test Mode E2E; isolated Preview credentials; webhook/replay/reconciliation; UX/CSV review; rollback and backup; explicit approval before Production/live billing.
 
 ## 10. Decisions not to guess
-Pocket prices; issue calendar/cutoff and mid-cycle allocation; cancellation/refund policy; failed-payment grace/retry and dispatch hold; plan/format change and proration; pause availability; customer auth (magic link/password); shipping SLA/returns/support; Pocket/Regular cadence (same dates only provisional).
+issue calendar/cutoff and mid-cycle allocation; cancellation/refund policy; failed-payment grace/retry and dispatch hold; plan/format change and proration; pause availability; customer auth (magic link/password); shipping SLA/returns/support; Pocket/Regular cadence (same dates only provisional).
 
 ## 11. Implementation sequence
-A. Review schema + lock business rules. B. Provision isolated Preview DB/migrations; seed Regular only. C. Razorpay plans/checkout/webhook/payment ledger. D. Entitlement engine/tests. E. Dispatch/outbox/CSV. F. Secure admin/portal. G. Reconciliation/failure drills. H. Preview QA; production only after explicit approval.
+A. Review schema + lock business rules. B. Provision isolated Preview DB/migrations; seed Regular and Pocket at confirmed prices. C. Razorpay plans/checkout/webhook/payment ledger. D. Entitlement engine/tests. E. Dispatch/outbox/CSV. F. Secure admin/portal. G. Reconciliation/failure drills. H. Preview QA; production only after explicit approval.
 
 **Existing preview schema is draft:** missing issues and email_outbox, plan versioning, replacement linkage, entitlement period/source and complete lifecycle constraints. Revise before applying.
