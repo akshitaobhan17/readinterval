@@ -101,11 +101,13 @@ CREATE INDEX IF NOT EXISTS email_outbox_due_idx ON email_outbox(status,scheduled
 
 -- Stronger webhook event bookkeeping and safe replay.
 ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS provider_event_id text;
+ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS event_id text;
 ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS locked_at timestamptz;
 ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS next_attempt_at timestamptz;
 ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS last_attempt_at timestamptz;
 CREATE UNIQUE INDEX IF NOT EXISTS webhook_provider_event_id_uq
   ON webhook_events(provider,provider_event_id) WHERE provider_event_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS webhook_events_retry_idx ON webhook_events(processing_status,next_attempt_at);
 
 -- Customer/address lifecycle.
 ALTER TABLE customers ADD COLUMN IF NOT EXISTS normalized_email text;
