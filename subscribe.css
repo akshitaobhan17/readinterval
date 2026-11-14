@@ -1,0 +1,44 @@
+/* Subscription page — deliberately uses the paper's existing palette, fonts and heavy rules */
+.subscription-page .sub-intro{padding:clamp(2.2rem,7vw,5.5rem) 0 3rem;position:relative}
+.sub-topline{display:flex;justify-content:space-between;gap:1rem;border-bottom:2px solid var(--ink);padding:.55rem 0;font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.sub-intro .display-head{font:800 clamp(3.6rem,12vw,9rem)/.88 var(--display);letter-spacing:-.065em;text-transform:uppercase;margin:clamp(2rem,5vw,4rem) 0 1.2rem}
+.sub-intro .display-head em{font-family:var(--fat);font-weight:400;color:var(--red);text-shadow:.045em .045em var(--ink);text-transform:none;letter-spacing:-.02em}
+.sub-deck{max-width:36rem;font-size:clamp(1rem,2vw,1.25rem);font-weight:500}
+.sub-stamp{margin-top:2rem;display:inline-block;border:3px solid var(--ink);padding:.55rem .8rem;font:800 .72rem/1.2 var(--body);letter-spacing:.12em;transform:rotate(-5deg);background:var(--mustard)}
+.sub-plans{background:var(--ink);color:var(--cream);padding:clamp(3rem,7vw,6rem) 0}
+.sub-section-title .eyebrow,.sub-bottom .eyebrow{font-size:.7rem;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--lime);margin-bottom:1rem}
+.sub-section-title .head{font-size:clamp(2.8rem,8vw,6rem);color:var(--red);text-shadow:3px 3px var(--cream);margin-bottom:1.2rem}
+.edition-tabs{display:flex;border:2px solid var(--cream);margin:2rem 0 1rem}
+.edition-tab{flex:1;text-align:left;background:transparent;color:var(--cream);border:0;padding:1rem;font:800 1.15rem var(--body);cursor:pointer}
+.edition-tab span{display:block;font-size:.62rem;letter-spacing:.12em;margin-top:.2rem;opacity:.7}
+.edition-tab.active{background:var(--lime);color:var(--ink)}
+.edition-note{border-left:5px solid var(--red);padding:.7rem 1rem;margin:1.2rem 0 2rem;max-width:50rem;font-weight:500}
+.plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.plan-card{background:var(--cream);color:var(--ink);padding:1.25rem;position:relative;border:3px solid var(--cream);display:flex;flex-direction:column;min-height:360px}
+.plan-card[hidden]{display:none}
+.plan-card.featured{background:var(--mustard);border-color:var(--mustard);transform:translateY(-.5rem)}
+.plan-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid currentColor;padding-bottom:.6rem;font-size:.65rem;font-weight:800;letter-spacing:.12em}
+.plan-mark{font-size:1.5rem}
+.plan-ribbon{font-size:.58rem;font-weight:900;letter-spacing:.1em;background:var(--ink);color:var(--lime);padding:.3rem .5rem;align-self:flex-start;margin-top:.65rem}
+.plan-card h3{font:clamp(1.6rem,3vw,2.4rem)/1.05 var(--fat);margin:1.3rem 0 .55rem}
+.plan-desc{font-size:.88rem;min-height:3.2em}
+.plan-price{display:flex;align-items:baseline;gap:.45rem;margin:1.1rem 0 .25rem}
+.plan-price strong{font:800 clamp(2rem,4vw,3rem)/1 var(--display);letter-spacing:-.06em}
+.plan-price span{font-size:.8rem;font-weight:600}
+.plan-foot{font-size:.72rem;font-weight:700;opacity:.8;margin-bottom:1.2rem}
+.plan-select{margin-top:auto;background:var(--ink);color:var(--cream);border:2px solid var(--ink);padding:.8rem;font:800 .78rem var(--body);letter-spacing:.04em;text-align:left;cursor:pointer}
+.plan-select:hover{background:var(--red);color:var(--ink)}
+.sub-smallprint{font-size:.75rem;opacity:.75;margin-top:1.5rem}
+.sub-bottom{padding:clamp(3rem,7vw,6rem) 0}
+.sub-bottom .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.sub-bottom .display-head{font:800 clamp(3rem,7vw,6rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.06em}
+.sub-faq details{border-top:3px solid var(--ink);padding:1rem 0}
+.sub-faq details:last-child{border-bottom:3px solid var(--ink)}
+.sub-faq summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.sub-faq summary:after{content:"+";font-size:1.4rem}
+.sub-faq details[open] summary:after{content:"−"}
+.sub-faq details p{font-size:.9rem;margin-top:.7rem;max-width:45rem}
+.subscription-page footer{background:var(--ink);color:var(--cream);padding:1.5rem 0}
+.footer-line{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.65rem;font-weight:800;letter-spacing:.12em}
+.footer-line a{color:var(--lime);text-decoration:none}
+@media(max-width:760px){.plan-grid{grid-template-columns:1fr}.plan-card{min-height:300px}.plan-card.featured{transform:none}.sub-bottom .wrap{grid-template-columns:1fr;gap:1.5rem}.sub-intro .display-head{font-size:clamp(3.4rem,17vw,6.5rem)}.sub-topline{font-size:.55rem}}
