@@ -16,7 +16,7 @@ ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS plan_version integer NOT NULL
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS provider_status text;
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS cancel_requested_at timestamptz;
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS cancellation_effective_at timestamptz;
-ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS checkout_idempotency_key text;
+-- Base schema already includes checkout_idempotency_key; keep this migration idempotent.
 CREATE UNIQUE INDEX IF NOT EXISTS subscriptions_checkout_idempotency_uq
   ON subscriptions(checkout_idempotency_key) WHERE checkout_idempotency_key IS NOT NULL;
 
