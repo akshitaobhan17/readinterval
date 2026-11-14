@@ -13,7 +13,7 @@ module.exports=async function handler(req,res){
   let done=0,failed=0;
   for(const p of payments){
    try{
-    const lock=await db`INSERT INTO entitlement_processing_runs(payment_id,status) VALUES(${p.id},'processing') ON CONFLICT(payment_id) DO NOTHING RETURNING id`;
+    const lock=await db`INSERT INTO entitlement_processing_runs(payment_id,status,started_at,error,completed_at) VALUES(${p.id},'processing',now(),NULL,NULL) ON CONFLICT(payment_id) DO UPDATE SET status='processing',started_at=now(),error=NULL,completed_at=NULL WHERE entitlement_processing_runs.status='failed' RETURNING id`;
     if(!lock.length)continue;
     const plans=await db`SELECT format,issues_per_period FROM subscription_plans WHERE code=${p.plan_code} AND version=${p.plan_version} LIMIT 1`;
     if(!plans.length)throw new Error("Plan version missing");
