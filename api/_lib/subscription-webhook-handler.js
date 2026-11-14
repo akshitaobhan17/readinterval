@@ -8,7 +8,7 @@ module.exports=async function handler(req,res){
  if(provided.length!==want.length||!crypto.timingSafeEqual(provided,want))return json(res,400,{error:"Invalid signature"});
  let event;try{event=JSON.parse(raw.toString("utf8"));}catch{return json(res,400,{error:"Invalid JSON"});}
  const eventId=req.headers["x-razorpay-event-id"];if(!eventId)return json(res,400,{error:"Missing Razorpay event ID"});
- const db=require("./_lib/db").getDb();
+ const db=require("./db").getDb();
  try{
   const rows=await db`INSERT INTO webhook_events(provider,event_id,provider_event_id,event_type,payload,signature_valid,processing_status)
   VALUES('razorpay',${eventId},${eventId},${event.event||"unknown"},${event}::jsonb,true,'received')
