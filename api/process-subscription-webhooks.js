@@ -20,8 +20,9 @@ module.exports=async function handler(req,res){
     if(mapped)await db`UPDATE subscriptions SET status=${mapped},provider_status=${sub?.status||mapped},start_at=COALESCE(start_at,CASE WHEN ${sub?.start_at||0}>0 THEN to_timestamp(${sub.start_at}) END),next_charge_at=CASE WHEN ${sub?.charge_at||0}>0 THEN to_timestamp(${sub.charge_at}) ELSE next_charge_at END,updated_at=now() WHERE id=${local[0].id}`;
     if(payment){
      const captured=type==="subscription.charged"||payment.status==="captured";
-     await db`INSERT INTO subscription_payments(subscription_id,razorpay_payment_id,razorpay_invoice_id,amount_paise,currency,status,paid_at,provider_status,raw_data)
-      VALUES(${local[0].id},${payment.id||null},${invoice?.id||null},${payment.amount||invoice?.amount||0},${payment.currency||invoice?.currency||"INR"},${captured?"captured":payment.status==="failed"?"failed":"authorized"},${captured?"now()":null},${payment.status||type},${payment}::jsonb) ON CONFLICT DO NOTHING`;
+     const periodStart=invoice?.billing_start||invoice?.start_at||null,periodEnd=invoice?.billing_end||invoice?.end_at||null;
+     await db`INSERT INTO subscription_payments(subscription_id,razorpay_payment_id,razorpay_invoice_id,amount_paise,currency,status,paid_at,provider_status,raw_data,billing_period_start,billing_period_end)
+      VALUES(${local[0].id},${payment.id||null},${invoice?.id||null},${payment.amount||invoice?.amount||0},${payment.currency||invoice?.currency||"INR"},${captured?"captured":payment.status==="failed"?"failed":"authorized"},${captured?"now()":null},${payment.status||type},${payment}::jsonb,${periodStart?new Date(periodStart*1000).toISOString():null},${periodEnd?new Date(periodEnd*1000).toISOString():null}) ON CONFLICT DO NOTHING`;
     }
     await db`UPDATE webhook_events SET processing_status='processed',processed_at=now(),error=NULL,next_attempt_at=NULL WHERE id=${e.id}`;processed++;
    }catch(err){await db`UPDATE webhook_events SET processing_status='failed',error=${String(err.message).slice(0,500)},next_attempt_at=now()+interval '5 minutes' WHERE id=${e.id}`;failed++;}
