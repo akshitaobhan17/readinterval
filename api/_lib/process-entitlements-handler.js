@@ -1,5 +1,5 @@
 const {getDb}=require("./db");
-const {allocateIssueCodes,entitlementIdempotencyKey}=require("./_lib/entitlements");
+const {allocateIssueCodes,entitlementIdempotencyKey}=require("./entitlements");
 const json=(res,s,b)=>res.status(s).json(b);
 module.exports=async function handler(req,res){
  if(req.method!=="POST"){res.setHeader("Allow","POST");return json(res,405,{error:"Method not allowed"});}
