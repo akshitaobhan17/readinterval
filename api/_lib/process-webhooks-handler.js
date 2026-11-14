@@ -1,4 +1,4 @@
-const {getDb}=require("./_lib/db");
+const {getDb}=require("./db");
 const json=(res,s,b)=>res.status(s).json(b);
 const statusMap={"subscription.authenticated":"authenticated","subscription.activated":"active","subscription.pending":"pending","subscription.halted":"halted","subscription.cancelled":"cancelled","subscription.paused":"paused","subscription.resumed":"active","subscription.completed":"completed","subscription.expired":"expired"};
 module.exports=async function handler(req,res){
