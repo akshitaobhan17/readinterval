@@ -1,4 +1,4 @@
-const {getDb}=require("./_lib/db");
+const {getDb}=require("./db");
 const {allocateIssueCodes,entitlementIdempotencyKey}=require("./_lib/entitlements");
 const json=(res,s,b)=>res.status(s).json(b);
 module.exports=async function handler(req,res){
