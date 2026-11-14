@@ -1,6 +1,6 @@
 const Razorpay=require("razorpay");
-const {getDb}=require("./_lib/db");
-const {getPlan}=require("./_lib/subscription-plans");
+const {getDb}=require("./db");
+const {getPlan}=require("./subscription-plans");
 
 const json=(res,status,body)=>res.status(status).json(body);
 const clean=v=>typeof v==="string"?v.trim():"";
