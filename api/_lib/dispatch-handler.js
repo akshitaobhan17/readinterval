@@ -13,7 +13,7 @@ module.exports=async function handler(req,res){
   if(action==="create"){
    const issue=String(b.issue||""),format=String(b.format||""),batchCode=String(b.batchCode||"");
    if(!issue||!["regular","pocket"].includes(format)||!batchCode)return json(res,400,{error:"issue, format and batchCode required"});
-   const rows=await db`INSERT INTO dispatch_batches(issue_id,format,batch_code,status,created_by) SELECT id,${format},${batchCode},'draft','admin' FROM issues WHERE issue_code=${issue} AND ${format==="regular"?"regular_available":"pocket_available"}=true RETURNING id,batch_code`;
+   const rows=format==="regular"?await db`INSERT INTO dispatch_batches(issue_id,format,batch_code,status,created_by) SELECT id,${format},${batchCode},'draft','admin' FROM issues WHERE issue_code=${issue} AND regular_available=true RETURNING id,batch_code`:await db`INSERT INTO dispatch_batches(issue_id,format,batch_code,status,created_by) SELECT id,${format},${batchCode},'draft','admin' FROM issues WHERE issue_code=${issue} AND pocket_available=true RETURNING id,batch_code`;
    if(!rows.length)return json(res,404,{error:"Issue/format not found or unavailable"});
    const batch=rows[0];const result=await db`INSERT INTO dispatches(entitlement_id,issue_code,quantity,address_snapshot,batch_id,status) SELECT e.id,e.issue_code,e.quantity,COALESCE(s.address_snapshot,'{}'::jsonb),${batch.id},'queued' FROM issue_entitlements e JOIN subscriptions s ON s.id=e.subscription_id WHERE e.issue_code=${issue} AND e.format=${format} AND e.entitlement_status='eligible' ON CONFLICT(entitlement_id) DO NOTHING RETURNING id`;
    return json(res,201,{batch:batch.batch_code,createdDispatches:result.length});
