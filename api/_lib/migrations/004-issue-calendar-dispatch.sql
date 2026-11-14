@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS dispatch_batches(
  closed_at timestamptz
 );
 ALTER TABLE dispatches ADD COLUMN IF NOT EXISTS batch_id uuid REFERENCES dispatch_batches(id);
+ALTER TABLE issue_entitlements ADD COLUMN IF NOT EXISTS issue_id uuid REFERENCES issues(id);
 ALTER TABLE dispatches ADD COLUMN IF NOT EXISTS replacement_for uuid REFERENCES dispatches(id);
 ALTER TABLE dispatches ADD COLUMN IF NOT EXISTS exception_reason text;
 ALTER TABLE dispatches ADD COLUMN IF NOT EXISTS returned_at timestamptz;
@@ -32,6 +33,11 @@ ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS provider_status text;
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS cancellation_effective_at timestamptz;
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS address_version integer NOT NULL DEFAULT 1;
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS plan_version integer NOT NULL DEFAULT 1;
+ALTER TABLE subscription_plans ADD COLUMN IF NOT EXISTS version integer NOT NULL DEFAULT 1;
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS normalized_email text;
+UPDATE customers SET normalized_email=lower(email) WHERE normalized_email IS NULL;
+ALTER TABLE customers ALTER COLUMN normalized_email SET NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS customers_normalized_email_uq ON customers(normalized_email);
 ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS address_snapshot_version integer NOT NULL DEFAULT 1;
 ALTER TABLE subscription_payments ADD COLUMN IF NOT EXISTS provider_status text;
 ALTER TABLE subscription_payments ADD COLUMN IF NOT EXISTS billing_period_start timestamptz;
