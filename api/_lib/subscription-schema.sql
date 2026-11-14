@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
   customer_id uuid NOT NULL REFERENCES customers(id),
   plan_code text NOT NULL REFERENCES subscription_plans(code),
   razorpay_subscription_id text NOT NULL UNIQUE,
+  checkout_idempotency_key text UNIQUE,
   status text NOT NULL CHECK (status IN ('created','authenticated','active','pending','halted','paused','cancelled','completed','expired')),
   quantity integer NOT NULL DEFAULT 1 CHECK (quantity > 0),
   start_at timestamptz,
