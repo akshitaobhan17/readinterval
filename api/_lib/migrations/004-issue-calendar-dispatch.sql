@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS issues (
  created_at timestamptz NOT NULL DEFAULT now(),
  updated_at timestamptz NOT NULL DEFAULT now()
 );
-CREATE INDEX IF NOT EXISTS issue_calendar_idx ON issues(entitlement_cutoff_at,publication_status);
+-- Migration 002's canonical calendar uses release_at; 005 adds cutoff alignment.
+CREATE INDEX IF NOT EXISTS issue_calendar_idx ON issues(release_at,publication_status);
 CREATE TABLE IF NOT EXISTS dispatch_batches(
  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
  issue_id uuid NOT NULL REFERENCES issues(id),
