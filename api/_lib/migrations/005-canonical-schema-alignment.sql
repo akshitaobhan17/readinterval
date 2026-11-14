@@ -9,6 +9,7 @@ ALTER TABLE issues ADD COLUMN IF NOT EXISTS dispatch_from timestamptz;
 ALTER TABLE issues ADD COLUMN IF NOT EXISTS publication_status text;
 UPDATE issues SET entitlement_cutoff_at=COALESCE(entitlement_cutoff_at,release_at,now()),
  publication_status=CASE WHEN publication_status IN ('planned','published','closed','cancelled') THEN publication_status ELSE 'planned' END;
+UPDATE issues SET entitlement_cutoff_at=now() WHERE entitlement_cutoff_at IS NULL;
 ALTER TABLE issues ALTER COLUMN entitlement_cutoff_at SET NOT NULL;
 ALTER TABLE issues ALTER COLUMN publication_status SET DEFAULT 'planned';
 ALTER TABLE issues DROP CONSTRAINT IF EXISTS issues_publication_status_check;
@@ -28,6 +29,7 @@ ALTER TABLE dispatches ADD COLUMN IF NOT EXISTS exception_reason text;
 ALTER TABLE subscription_plans ADD COLUMN IF NOT EXISTS version integer NOT NULL DEFAULT 1;
 ALTER TABLE customers ADD COLUMN IF NOT EXISTS normalized_email text;
 UPDATE customers SET normalized_email=lower(trim(email)) WHERE normalized_email IS NULL;
+ALTER TABLE customers ALTER COLUMN normalized_email SET NOT NULL;
 CREATE UNIQUE INDEX IF NOT EXISTS customers_normalized_email_uq ON customers(normalized_email);
 -- Webhook processor uniqueness and retry metadata.
 ALTER TABLE webhook_events ADD COLUMN IF NOT EXISTS provider_event_id text;
