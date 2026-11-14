@@ -7,6 +7,7 @@ const webhook=require("./_lib/subscription-webhook-handler");
 const processWebhooks=require("./_lib/process-webhooks-handler");
 const processEntitlements=require("./_lib/process-entitlements-handler");
 const dispatch=require("./_lib/dispatch-handler");
+const subscriberAdmin=require("./_lib/subscriber-admin-handler");
 module.exports=async function(req,res){
  const action=String(req.query?.action||req.body?.action||"");
  switch(action){
@@ -15,6 +16,7 @@ module.exports=async function(req,res){
   case "process-webhooks": return processWebhooks(req,res);
   case "process-entitlements": return processEntitlements(req,res);
   case "dispatch": return dispatch(req,res);
+  case "admin-subscribers": return subscriberAdmin(req,res);
   default:return res.status(400).json({error:"Unknown subscription action"});
  }
 };
