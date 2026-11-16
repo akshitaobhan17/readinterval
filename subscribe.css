@@ -104,3 +104,30 @@
 .subscriber-form .head{color:#111;text-shadow:none}
 .checkout-submit{border-radius:999px;background:#111;color:#fff;border-color:#111}
 @media(max-width:600px){.membership-list .plan-card{padding:1rem;border-radius:12px}.membership-list .plan-price strong{font-size:1.5rem}.membership-list .plan-price span{font-size:.75rem}}
+
+/* Retain original Buy page cover carousel styling on subscriptions */
+.product-intro{padding:1rem 0 2rem}
+.product-topline{display:flex;justify-content:space-between;font:600 .72rem 'Poppins',sans-serif;letter-spacing:.14em;border-bottom:2px solid #111;padding:.6rem 0}
+.product-lead-final{grid-template-columns:1fr;gap:1.5rem;align-items:start;padding:1.2rem 0 2rem}
+.product-cover-final{max-width:620px;width:100%;margin:0 auto;background:transparent;border:0;box-shadow:none;position:relative;overflow:visible}
+.cover-carousel{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:.25rem .7rem 1rem 0}
+.cover-carousel::-webkit-scrollbar{display:none}
+.cover-slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;position:relative;background:#2865e8;border:5px solid #111;box-shadow:10px 10px 0 #111;padding:clamp(.5rem,1.4vw,.9rem);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.cover-slide img{display:block;width:100%;height:100%;object-fit:contain;box-shadow:none;background:transparent}
+.cover-slide:nth-child(2){background:#f2d64b}.cover-slide:nth-child(3){background:#e23b2e}.cover-slide:nth-child(4){background:#c9db4b}.cover-slide:nth-child(5){background:#7fb6e0}
+.cover-slide::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.24;mix-blend-mode:soft-light;background-image:radial-gradient(ellipse at 18% 22%,rgba(255,255,255,.18),transparent 42%),radial-gradient(ellipse at 78% 68%,rgba(15,20,30,.10),transparent 48%),radial-gradient(ellipse at 48% 92%,rgba(255,255,255,.10),transparent 36%);background-size:100% 100%}
+.cover-slide img{position:relative;z-index:1}
+.cover-carousel-dots{display:flex;gap:.5rem;justify-content:center;align-items:center;margin:.7rem 0 0}
+.cover-carousel-dots button{width:8px;height:8px;border:0;border-radius:50%;padding:0;background:#111;opacity:.25;cursor:pointer}
+.cover-carousel-dots button[aria-current="true"]{opacity:1;transform:scale(1.25)}
+.cover-nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:.2rem .25rem 0}
+.cover-nav button{border:2px solid #111;background:#fff;color:#111;border-radius:50%;width:34px;height:34px;font-size:1.1rem;line-height:1;cursor:pointer}
+.product-copy-final{text-align:center;max-width:820px;margin:0 auto}
+.product-copy-final .display-head{font-size:clamp(3rem,12vw,6rem);line-height:.95;margin:.25em 0 .2em;color:#e23b2e;text-shadow:3px 3px #111;font-family:var(--fat)}
+.product-copy-final .product-meta{justify-content:center;margin:.8rem 0 1.2rem}
+.product-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.3rem 0}
+.product-meta span{border:2px solid #111;padding:.35rem .55rem;font-size:.62rem;font-weight:800;letter-spacing:.1em}
+.product-buy-jump{display:inline-block;background:#111;color:#f5ebdf;padding:.85rem 1.2rem;text-decoration:none;font-weight:800;text-transform:uppercase}
+@media(min-width:900px){.product-lead-final{grid-template-columns:1fr;align-items:start;gap:1.5rem}.product-cover-final{max-width:620px;margin:0 auto}.cover-carousel{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.25rem .7rem 1rem 0}.cover-slide{flex:0 0 100%;aspect-ratio:4/5;min-width:0;width:100%;padding:clamp(.5rem,1.4vw,.9rem);border-width:5px;box-shadow:10px 10px 0 #111}.cover-nav,.cover-carousel-dots{display:flex}}
+@media(max-width:899px){.product-lead-final{grid-template-columns:1fr}.product-cover-final{max-width:620px}.cover-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.cover-slide{flex:0 0 100%;width:100%;max-width:100%;aspect-ratio:4/5}}
+@media(max-width:680px){.product-lead-final{padding:.8rem 0 1.5rem}.product-cover-final{padding:0;border:0;box-shadow:none;overflow:hidden}.cover-carousel{padding:.25rem .7rem 1rem 0;gap:1.1rem}.cover-slide{flex:0 0 100%;border-width:4px;box-shadow:7px 7px 0 #111;padding:.5rem}.cover-slide img{max-height:72vh}.product-copy-final .display-head{font-size:clamp(2.8rem,13vw,4.6rem)}}
