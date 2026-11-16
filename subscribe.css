@@ -162,3 +162,14 @@
 .membership-list .plan-card{position:relative;overflow:hidden}
 .membership-list .plan-card.chosen:before{content:"";position:absolute;right:-25px;top:-25px;width:72px;height:72px;background:#e23b2e;transform:rotate(45deg);opacity:.12;pointer-events:none}
 .plan-ribbon{display:inline-block}
+
+/* Layout requested: carousel → Make Room copy → CTA → plan selector */
+.product-copy-final{display:none!important}
+.product-intro .product-topline{display:none!important}
+.sub-intro{padding:1.2rem 0 2.2rem!important}
+.sub-intro .display-head{margin:.5rem 0 1rem!important}
+.sub-deck{margin:0 0 1rem!important;max-width:38rem}
+.shipping-note{display:inline-block;margin:.25rem 0 1.4rem;padding:.45rem .7rem;border:2px solid var(--ink);font:800 .68rem var(--body);letter-spacing:.1em;text-transform:uppercase}
+.intro-subscribe-cta{display:block;width:max-content;max-width:100%;margin:.4rem 0 0;background:var(--ink);color:var(--cream);padding:1.15rem 1.4rem;text-decoration:none;font:800 .85rem var(--body);letter-spacing:.05em}
+.intro-subscribe-cta:hover{background:var(--red);color:var(--ink)}
+.sub-plans{scroll-margin-top:1rem}
