@@ -146,3 +146,19 @@
 #continue-subscription:disabled{background:#ddd;color:#777;border-color:#777;box-shadow:none}
 .sub-intro .sub-deck{max-width:600px}
 .sub-intro .display-head{font-family:var(--fat);text-shadow:3px 3px #e23b2e}
+
+/* Permanent Interval wordmark beneath the carousel */
+.interval-wordmark-sub{display:flex;flex-direction:column;align-items:center;line-height:.78;margin:1.8rem auto 1rem;color:#111}
+.interval-wordmark-sub span{font-family:var(--fat);font-size:1.35rem;letter-spacing:-.04em}
+.interval-wordmark-sub strong{font-family:var(--poppins);font-weight:900;font-size:clamp(3rem,13vw,6.4rem);letter-spacing:-.075em;border-bottom:7px solid #111;position:relative}
+.interval-wordmark-sub .kick{display:inline-block;transform:rotate(-12deg);border-bottom:4px solid #e23b2e}
+.product-copy-final .product-meta{margin-top:1.5rem}
+/* Little hand-made-feeling symbols instead of emoji */
+.plan-mark{display:inline-block;width:42px;height:42px;position:relative;flex:none}
+.mark-monthly:before{content:"";position:absolute;inset:5px;border:3px solid #e23b2e;border-radius:50%;border-right-color:transparent;transform:rotate(-35deg)}
+.mark-monthly:after{content:"";position:absolute;right:3px;top:4px;border:8px solid transparent;border-left-color:#e23b2e;transform:rotate(12deg)}
+.mark-quarterly:before{content:"✳";position:absolute;inset:-4px;font-size:42px;color:#e23b2e;text-shadow:2px 2px #111;line-height:1}
+.mark-annual:before{content:"✷";position:absolute;inset:-4px;font-size:42px;color:#c4d83f;text-shadow:2px 2px #111;line-height:1}
+.membership-list .plan-card{position:relative;overflow:hidden}
+.membership-list .plan-card.chosen:before{content:"";position:absolute;right:-25px;top:-25px;width:72px;height:72px;background:#e23b2e;transform:rotate(45deg);opacity:.12;pointer-events:none}
+.plan-ribbon{display:inline-block}
