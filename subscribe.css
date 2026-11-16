@@ -131,3 +131,18 @@
 @media(min-width:900px){.product-lead-final{grid-template-columns:1fr;align-items:start;gap:1.5rem}.product-cover-final{max-width:620px;margin:0 auto}.cover-carousel{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.25rem .7rem 1rem 0}.cover-slide{flex:0 0 100%;aspect-ratio:4/5;min-width:0;width:100%;padding:clamp(.5rem,1.4vw,.9rem);border-width:5px;box-shadow:10px 10px 0 #111}.cover-nav,.cover-carousel-dots{display:flex}}
 @media(max-width:899px){.product-lead-final{grid-template-columns:1fr}.product-cover-final{max-width:620px}.cover-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.cover-slide{flex:0 0 100%;width:100%;max-width:100%;aspect-ratio:4/5}}
 @media(max-width:680px){.product-lead-final{padding:.8rem 0 1.5rem}.product-cover-final{padding:0;border:0;box-shadow:none;overflow:hidden}.cover-carousel{padding:.25rem .7rem 1rem 0;gap:1.1rem}.cover-slide{flex:0 0 100%;border-width:4px;box-shadow:7px 7px 0 #111;padding:.5rem}.cover-slide img{max-height:72vh}.product-copy-final .display-head{font-size:clamp(2.8rem,13vw,4.6rem)}}
+
+/* interval-native subscription selector: paper tone, not generic white cards */
+.sub-plans{background:#f4eadc;color:#111}
+.membership-list .plan-card{background:#f4eadc;color:#111;border:2px solid #111;border-radius:0;box-shadow:5px 5px 0 #111}
+.membership-list .plan-card.featured{background:#f4eadc;color:#111;border-color:#111}
+.membership-list .plan-card.chosen{outline:3px solid #e23b2e;outline-offset:2px;box-shadow:5px 5px 0 #111}
+.membership-list .plan-ribbon{background:#f4d84b;color:#111;border:2px solid #111;border-radius:0;font-weight:900;letter-spacing:.08em}
+.membership-list .plan-card.best-value .plan-ribbon{background:#c6dc4b}
+.membership-list .plan-card.featured .plan-ribbon{background:#f4d84b}
+.membership-list .plan-select{border-top:2px solid #111}
+.subscription-next{justify-content:stretch}
+#continue-subscription{width:100%;border-radius:0;background:#111;color:#f4eadc;border:2px solid #111;box-shadow:5px 5px 0 #e23b2e;font-weight:900;letter-spacing:.08em}
+#continue-subscription:disabled{background:#ddd;color:#777;border-color:#777;box-shadow:none}
+.sub-intro .sub-deck{max-width:600px}
+.sub-intro .display-head{font-family:var(--fat);text-shadow:3px 3px #e23b2e}
